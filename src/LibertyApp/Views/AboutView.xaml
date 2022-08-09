@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="LibertyApp.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:language="clr-namespace:LibertyApp.Language"
+             xmlns:viewmodels="clr-namespace:LibertyApp.ViewModels"
+             xmlns:libertyApp="clr-namespace:LibertyApp"
+             d:DataContext="{d:DesignInstance Type=viewmodels:AboutViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="574" d:DesignWidth="340"
+             Background="{DynamicResource BackgroundImage}">
+
+    <UserControl.Resources>
+        <ImageSource x:Key="BgDefault">/Resources/background-default.jpg</ImageSource>
+        <ImageBrush x:Key="BackgroundImage" ImageSource="{DynamicResource BgDefault}"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock TextWrapping="Wrap" FontSize="22" Margin="16,10,16,12" FontWeight="DemiBold"
+                   Text="{x:Static language:Strings.AboutHeader}"/>
+
+                <TextBlock TextWrapping="Wrap" Margin="16,0,16,14"
+                   Text="{x:Static language:Strings.AboutDescription}" />
+
+                <Image Source="/Resources/about.jpg" RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True" Margin="0,0,0,12" />
+
+                <TextBlock TextWrapping="Wrap" Margin="16,0,16,16"
+                           Text="{x:Static language:Strings.AboutText}" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="16,0,8,0"
+                            Name="Telegram"
+                            libertyApp:Extensions.Icon="/Resources/telegram-logo.png"
+                            Content="Telegram"
+                            Style="{StaticResource AboutButton}"
+                            ToolTip="{x:Static language:Strings.OpenInBrowserTooltip}"
+                            Command="{Binding OpenInBrowserCommand}"
+                            CommandParameter="Telegram" />
+
+                    <Button Grid.Column="1" Margin="8,0,8,0"
+                            Name="Twitter"
+                            libertyApp:Extensions.Icon="/Resources/twitter-logo.png"
+                            Content="Twitter"
+                            Style="{StaticResource AboutButton}"
+                            ToolTip="{x:Static language:Strings.OpenInBrowserTooltip}"
+                            Command="{Binding OpenInBrowserCommand}"
+                            CommandParameter="Twitter" />
+
+                    <Button Grid.Column="2" Margin="8,0,16,0"
+                            Name="Github"
+                            libertyApp:Extensions.Icon="/Resources/github-logo.png"
+                            Content="Github"
+                            Style="{StaticResource AboutButton}"
+                            ToolTip="{x:Static language:Strings.OpenInBrowserTooltip}"
+                            Command="{Binding OpenInBrowserCommand}"
+                            CommandParameter="Github" />
+
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

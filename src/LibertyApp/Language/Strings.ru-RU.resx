@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Мы за свободу слова и против какой-либо цензуры. Делаем некоммерческий VPN , не собирающий никаких данных.</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>Cвободный VPN
+для свободных людей</value>
+  </data>
+  <data name="AboutMenu" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Сегодня свобода слова особенно уязвима, независимые СМИ запрещены, людям промывают мозги пропагандой, сервисы ВПН блокируют, выражать свою позицию и мнение опасно. Поэтому мы взялись за этот проект, он некоммерческий, и здесь не преследуется никакой выгоды. Мы за свободу слова и против какой-либо цензуры. Компания у нас небольшая, но у нас большой потенциал. Вы можете поддержать нас донатами или любым другим вкладом по улучшению сервиса. Даже заведение ишью в проекте сильно нам поможет.</value>
+  </data>
+  <data name="ApplicationWillBeClosed" xml:space="preserve">
+    <value>Приложение будет закрыто.</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>FuckRKN1</value>
+  </data>
+  <data name="CloseButtonTooltip" xml:space="preserve">
+    <value>Закрыть приложение</value>
+  </data>
+  <data name="ConnectingText" xml:space="preserve">
+    <value>Подключение…</value>
+  </data>
+  <data name="ConnectionErrorCaption" xml:space="preserve">
+    <value>Ошибка соединения</value>
+  </data>
+  <data name="ConnectionHeader" xml:space="preserve">
+    <value>VPN</value>
+  </data>
+  <data name="ConnectionMenu" xml:space="preserve">
+    <value>VPN</value>
+  </data>
+  <data name="ConnectText" xml:space="preserve">
+    <value>Подключиться</value>
+  </data>
+  <data name="CopyToClipboardCaption" xml:space="preserve">
+    <value>Буфер обмена</value>
+  </data>
+  <data name="CopyToClipboardMessage" xml:space="preserve">
+    <value>{0} скопировано в буфер обмена:
+{1}</value>
+  </data>
+  <data name="CopyToClipboardToolTip" xml:space="preserve">
+    <value>Копировать в буфер обмена</value>
+  </data>
+  <data name="DisconnectingText" xml:space="preserve">
+    <value>Отключение…</value>
+  </data>
+  <data name="DisconnectText" xml:space="preserve">
+    <value>Отключиться</value>
+  </data>
+  <data name="DonateHeader" xml:space="preserve">
+    <value>Мы open source проект. Вы можете нас поддержать</value>
+  </data>
+  <data name="DonateMenu" xml:space="preserve">
+    <value>Поддержать</value>
+  </data>
+  <data name="DonateText" xml:space="preserve">
+    <value>Вы можете поддержать нас пожертвованиями или любым другим вкладом в улучшение сервиса. Pull-реквесты и создание Issues на GitHub также очень помогают нам.</value>
+  </data>
+  <data name="EncryptionKeysFileNotFound" xml:space="preserve">
+    <value>Файл с ключами шифрования не найден.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrorImportEcryptionKeys" xml:space="preserve">
+    <value>Ошибка импорта ключей шифрования.</value>
+  </data>
+  <data name="ExitApplicationCaption" xml:space="preserve">
+    <value>Завершение работы приложения</value>
+  </data>
+  <data name="ExitApplicationMessage" xml:space="preserve">
+    <value>Выход из приложения закроет соединение. Вы хотите закрыть соединение и выйти?</value>
+  </data>
+  <data name="MaximizeButtonTooltip" xml:space="preserve">
+    <value>Развернуть окно</value>
+  </data>
+  <data name="MinimizeButtonTooltip" xml:space="preserve">
+    <value>Свернуть окно</value>
+  </data>
+  <data name="NeedForEncryptionKeys" xml:space="preserve">
+    <value>Необходимо установить ключи шифрования</value>
+  </data>
+  <data name="NeedForEncryptionKeysMessage" xml:space="preserve">
+    <value>Приложению необходимо установить ключи шифрования при первом запуске. Ключи шифрования необходимы для установления соединения с VPN-сервером.
+
+Согласны ли вы установить ключи шифрования в хранилище вашей системы?
+
+Если вы нажмете «Нет», приложение будет закрыто.</value>
+  </data>
+  <data name="OpenInBrowserTooltip" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+  <data name="StatusConnected" xml:space="preserve">
+    <value>Подключен к Cвободе</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Подключение к Cвободе</value>
+  </data>
+  <data name="StatusDisconnected" xml:space="preserve">
+    <value>Отключено</value>
+  </data>
+</root>
