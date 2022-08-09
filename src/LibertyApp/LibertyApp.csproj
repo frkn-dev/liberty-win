@@ -1,0 +1,152 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>disable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<SignAssembly>False</SignAssembly>
+		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
+		<PackageProjectUrl></PackageProjectUrl>
+		<Company>Nezavisimost</Company>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Remove="Language\Strings.en.resx" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\about.jpg" />
+	  <None Remove="Resources\background-connected.jpg" />
+	  <None Remove="Resources\background-connecting.jpg" />
+	  <None Remove="Resources\background-default.jpg" />
+	  <None Remove="Resources\background.jpg" />
+	  <None Remove="Resources\background.png" />
+	  <None Remove="Resources\bitcoin-logo.png" />
+	  <None Remove="Resources\boosty-logo.png" />
+	  <None Remove="Resources\button-active.png" />
+	  <None Remove="Resources\button-hover.png" />
+	  <None Remove="Resources\button-pressed.png" />
+	  <None Remove="Resources\button.png" />
+	  <None Remove="Resources\credobank-logo.png" />
+	  <None Remove="Resources\ethereum-logo.png" />
+	  <None Remove="Resources\github-logo.png" />
+	  <None Remove="Resources\icon.ico" />
+	  <None Remove="Resources\icon2.ico" />
+	  <None Remove="Resources\near-logo.png" />
+	  <None Remove="Resources\patreon-logo.png" />
+	  <None Remove="Resources\splashscreen.jpg" />
+	  <None Remove="Resources\splashscreen.ru-RU.jpg" />
+	  <None Remove="Resources\telegram-logo.png" />
+	  <None Remove="Resources\twitter-logo.png" />
+	  <None Remove="Resources\usdt-logo.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\about.jpg" />
+	  <Resource Include="Resources\background-connected.jpg" />
+	  <Resource Include="Resources\background-connecting.jpg" />
+	  <Resource Include="Resources\background-default.jpg">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\background.jpg">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\bitcoin-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\boosty-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\button-active.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\button-hover.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\button-pressed.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\button.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\credobank-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\ethereum-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\github-logo.png" />
+	  <Resource Include="Resources\icon.ico">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\icon2.ico">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\near-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\patreon-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\splashscreen.jpg">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\splashscreen.ru-RU.jpg" />
+	  <Resource Include="Resources\telegram-logo.png" />
+	  <Resource Include="Resources\twitter-logo.png" />
+	  <Resource Include="Resources\usdt-logo.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Language\Strings.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Strings.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Properties\Resource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resource.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Language\Strings.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Language\Strings.ru-RU.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Properties\Resource.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\fuckrkn1.pbk">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Resources\vpnclient.p12">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>
