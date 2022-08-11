@@ -189,7 +189,6 @@ public class ConnectionViewModel : ObservableObject
 
 				// arguments to establish a connection
 				process.StartInfo.ArgumentList.Add(Resource.ConnectionName);
-				process.StartInfo.ArgumentList.Add($"/phonebook:{Resource.PhoneBookPath}");
 
 				process.Start();
 				await process.WaitForExitAsync();

@@ -2,109 +2,101 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace LibertyApp.ViewModels;
 
 public class MainWindowViewModel : ObservableObject
 {
-    #region Properties
+	#region Properties
 
-    private object _currentView;
-    public object CurrentView
-    {
-        get => _currentView;
-        set => SetProperty(ref _currentView, value);
-    }
+	private object _currentView;
+	public object CurrentView
+	{
+		get => _currentView;
+		set => SetProperty(ref _currentView, value);
+	}
 
-    public GlobalViewModel Instance { get; }
-    public ConnectionViewModel ConnectionViewModel { get; }
-    public AboutViewModel AboutViewModel { get; }
-    public DonateViewModel DonateViewModel { get; }
+	public ConnectionViewModel ConnectionViewModel { get; }
+	public AboutViewModel AboutViewModel { get; }
+	public DonateViewModel DonateViewModel { get; }
 
-    #endregion
+	#endregion
 
-    #region Commands
+	#region Commands
 
-    public ICommand ShowConnectionViewCommand { get; }
-    public ICommand ShowAboutViewCommand { get; }
-    public ICommand ShowDonateViewCommand { get; }
+	public IRelayCommand ShowConnectionViewCommand { get; }
+	public IRelayCommand ShowAboutViewCommand { get; }
+	public IRelayCommand ShowDonateViewCommand { get; }
+	public IRelayCommand MoveWindowCommand { get; }
+	public IRelayCommand MaximizeWindowCommand { get; }
+	public IRelayCommand MinimizeWindowCommand { get; }
+	public IRelayCommand ShutdownWindowCommand { get; }
 
-    public ICommand MoveWindowCommand { get; }
+	#endregion
 
-    public ICommand MaximizeWindowCommand { get; }
+	#region Constructors
 
-    public ICommand MinimizeWindowCommand { get; }
+	public MainWindowViewModel()
+	{
+		ConnectionViewModel = App.Current.Services.GetService<ConnectionViewModel>();
+		AboutViewModel = App.Current.Services.GetService<AboutViewModel>();
+		DonateViewModel = App.Current.Services.GetService<DonateViewModel>();
 
-    public ICommand ShutdownWindowAsyncCommand { get; }
+		CurrentView = ConnectionViewModel;
 
-    #endregion
+		App.Current.MainWindow.MaxHeight = SystemParameters.MaximumWindowTrackHeight;
 
-    #region Constructors
+		MoveWindowCommand = new RelayCommand(MoveWindow);
+		MaximizeWindowCommand = new RelayCommand(MaximizeWindow);
+		MinimizeWindowCommand = new RelayCommand(MinimizeWindow);
+		ShutdownWindowCommand = new RelayCommand(ShutdownWindow);
 
-    public MainWindowViewModel()
-    {
-        Instance = GlobalViewModel.Instance;
-        ConnectionViewModel = App.Current.Services.GetService<ConnectionViewModel>();
-        AboutViewModel = App.Current.Services.GetService<AboutViewModel>();
-        DonateViewModel = App.Current.Services.GetService<DonateViewModel>();
+		ShowConnectionViewCommand = new RelayCommand(ShowConnectionView);
+		ShowAboutViewCommand = new RelayCommand(ShowAboutView);
+		ShowDonateViewCommand = new RelayCommand(ShowDonateView);
+	}
 
-        CurrentView = ConnectionViewModel;
+	#endregion
 
-        App.Current.MainWindow.MaxHeight = SystemParameters.MaximumWindowTrackHeight;
+	#region Private methods
 
-        MoveWindowCommand = new RelayCommand(MoveWindow);
-        MaximizeWindowCommand = new RelayCommand(MaximizeWindow);
-        MinimizeWindowCommand = new RelayCommand(MinimizeWindow);
-        ShutdownWindowAsyncCommand = new AsyncRelayCommand(ShutdownWindowAsync);
+	private static void MoveWindow() => Application.Current.MainWindow.DragMove();
 
-        ShowConnectionViewCommand = new RelayCommand(ShowConnectionView);
-        ShowAboutViewCommand = new RelayCommand(ShowAboutView);
-        ShowDonateViewCommand = new RelayCommand(ShowDonateView);
-    }
+	private static void MaximizeWindow()
+	{
+		App.Current.MainWindow.WindowState = App.Current.MainWindow.WindowState == WindowState.Maximized
+			? WindowState.Normal
+			: WindowState.Maximized;
+	}
 
-    #endregion
+	private static void MinimizeWindow() => App.Current.MainWindow.WindowState = WindowState.Minimized;
 
-    #region Private methods
+	private void ShutdownWindow()
+	{
+		if (ConnectionViewModel.IsConnected)
+		{
+			if (MessageBox.Show(Strings.ExitApplicationMessage,
+					Strings.ExitApplicationCaption,
+					MessageBoxButton.YesNo,
+					MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				ConnectionSetup.Disconnect();
 
-    private static void MoveWindow() => Application.Current.MainWindow.DragMove();
+				App.Current.Shutdown();
+			}
+		}
+		else
+		{
+			App.Current.Shutdown();
+		}
+	}
 
-    private static void MaximizeWindow()
-    {
-        App.Current.MainWindow.WindowState = App.Current.MainWindow.WindowState == WindowState.Maximized
-            ? WindowState.Normal
-            : WindowState.Maximized;
-    }
+	private void ShowConnectionView() => CurrentView = ConnectionViewModel;
 
-    private static void MinimizeWindow() => App.Current.MainWindow.WindowState = WindowState.Minimized;
+	private void ShowAboutView() => CurrentView = AboutViewModel;
 
-    private async Task ShutdownWindowAsync()
-    {
-        if (ConnectionViewModel.IsConnected)
-        {
-            if (MessageBox.Show(Strings.ExitApplicationMessage,
-                    Strings.ExitApplicationCaption,
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                await ConnectionViewModel.ConnectCommandAsync.ExecuteAsync(null);
+	private void ShowDonateView() => CurrentView = DonateViewModel;
 
-                App.Current.Shutdown();
-            }
-        }
-        else
-        {
-            App.Current.Shutdown();
-        }
-    }
-
-    private void ShowConnectionView() => CurrentView = ConnectionViewModel;
-
-    private void ShowAboutView() => CurrentView = AboutViewModel;
-
-    private void ShowDonateView() => CurrentView = DonateViewModel;
-
-    #endregion
+	#endregion
 }

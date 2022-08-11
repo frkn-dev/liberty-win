@@ -17,7 +17,6 @@ public partial class App : Application
     public App()
     {
         var services = new ServiceCollection()
-            .AddSingleton(typeof(GlobalViewModel))
             .AddSingleton(typeof(MainWindowViewModel))
             .AddSingleton(typeof(ConnectionViewModel))
             .AddSingleton(typeof(AboutViewModel))
@@ -30,10 +29,11 @@ public partial class App : Application
     {
         WpfSingleInstance.Make(Resource.ConnectionName, false);
 
+        ConnectionSetup.ImportPfx();
+
         var splashScreen = ShowSplashScreen(Thread.CurrentThread.CurrentUICulture.Name);
         splashScreen.Show(true);
 
-        ConnectionSetup.ImportPfx();
         ConnectionSetup.CreateConnection();
         ConnectionSetup.SettingIpSecConfiguration();
 
@@ -47,10 +47,7 @@ public partial class App : Application
             .ConnectionViewModel
             .IsConnected)
         {
-            ((MainWindowViewModel)Current.MainWindow.DataContext)?.ConnectionViewModel
-                    .ConnectCommandAsync
-                    .Execute(null);
-
+            ConnectionSetup.Disconnect();
             Current.Shutdown();
         }
 
