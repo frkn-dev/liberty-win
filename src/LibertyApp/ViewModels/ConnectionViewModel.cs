@@ -4,7 +4,9 @@ using LibertyApp.Views;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -82,12 +84,46 @@ public class ConnectionViewModel : ObservableObject
 	}
 	private bool _isConnected;
 
+	/// <summary>
+	/// Current download connection speed
+	/// </summary>
+	public double DownloadSpeed
+    {
+		get => _downloadSpeed;
+		set => SetProperty(ref _downloadSpeed, value);
+    }
+	private double _downloadSpeed;
+
+	/// <summary>
+	/// Current upload connection speed;
+	/// </summary>
+	public double UploadSpeed
+    {
+		get => _uploadSpeed;
+		set => SetProperty(ref _uploadSpeed, value);
+    }
+	private double _uploadSpeed;
+
+	private NetworkInterface[] _networkInterfaces;
+	private Dictionary<NetworkInterface, double> _lastReceievedBytes;
+	private Dictionary<NetworkInterface, double> _lastSentBytes;
+
 	#endregion
 
 	#region Constructors
 
 	public ConnectionViewModel()
 	{
+		_networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+		_lastReceievedBytes = new Dictionary<NetworkInterface, double>();
+		_lastSentBytes = new Dictionary<NetworkInterface, double>();
+
+        foreach (var networkInterface in _networkInterfaces)
+        {
+			_lastReceievedBytes.Add(networkInterface, 0);
+			_lastSentBytes.Add(networkInterface, 0);
+        }
+
 		_dispatcherTimer = new DispatcherTimer
 		{
 			Interval = new TimeSpan(0, 0, 1),
@@ -99,17 +135,19 @@ public class ConnectionViewModel : ObservableObject
 			CommandManager.InvalidateRequerySuggested();
 		};
 
+        _dispatcherTimer.Tick += CheckConnectionSpeed;
+
 		ConnectCommandAsync = new AsyncRelayCommand<object>(ConnectAsync);
 	}
 
-	#endregion
+    #endregion
 
-	#region Commands
+    #region Commands
 
-	/// <summary>
-	/// Connection relay command
-	/// </summary>
-	public IAsyncRelayCommand ConnectCommandAsync { get; }
+    /// <summary>
+    /// Connection relay command
+    /// </summary>
+    public IAsyncRelayCommand ConnectCommandAsync { get; }
 
 	/// <summary>
 	/// Connection relay command handler
@@ -266,6 +304,39 @@ public class ConnectionViewModel : ObservableObject
 	{
 		control.Background = BackgroundImageStates[2];
 		control.ConnectionButton.IsCancel = false;
+	}
+
+
+	private void CheckConnectionSpeed(object sender, EventArgs e)
+	{
+		if (!IsConnected)
+			return;
+
+		double totalReceived = 0;
+		double totalSent = 0;
+
+        foreach (var networkInterface in _networkInterfaces)
+        {
+			var statistic = networkInterface.GetIPStatistics();
+
+			// download
+			var received = statistic.BytesReceived;
+			var diff = received - _lastReceievedBytes[networkInterface];
+			totalReceived += diff;
+
+			// upload
+			var sent = statistic.BytesSent;
+			diff = sent - _lastSentBytes[networkInterface];
+			totalSent += diff;
+
+			_lastReceievedBytes[networkInterface] = received;
+			_lastSentBytes[networkInterface] = sent;
+        }
+
+		DownloadSpeed = totalReceived / 1024 / 1024 * 8;
+		UploadSpeed = totalSent / 1024 / 1024 * 8;
+
+		Trace.WriteLine("\nSpeed sized\n");
 	}
 
 	#endregion
