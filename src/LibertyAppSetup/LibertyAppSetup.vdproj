@@ -58,11 +58,6 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x86"
-                    {
-                    "Name" = "8:.NET Desktop Runtime 6.0.7 (x86)"
-                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x86"
-                    }
                 }
             }
         }
@@ -75,7 +70,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:3"
+        "Compression" = "3:2"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -83,18 +78,13 @@
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:TRUE"
+            "Enabled" = "11:FALSE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x64"
-                    {
-                    "Name" = "8:.NET Desktop Runtime 6.0.7 (x64)"
-                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x64"
-                    }
                 }
             }
         }
@@ -224,22 +214,22 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuckRKN1"
-        "ProductCode" = "8:{67576B4A-E164-47D4-949A-639DDEFEC86F}"
-        "PackageCode" = "8:{AF23A9DD-67D4-42D2-8EB4-2EBB5D26B691}"
+        "ProductCode" = "8:{67CDF5F7-D198-4E07-9D24-9239E6D03811}"
+        "PackageCode" = "8:{3C303E5B-5387-4432-BD4B-5DD4BE1AAC60}"
         "UpgradeCode" = "8:{3A3B1E85-573B-4CCB-8B0C-188FFD812550}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Nezavisimost"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://fuckrkn1.org/"
-        "Title" = "8:FuckRKN1 Setup"
+        "Title" = "8:FuckRKN1 x86 Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Nezavisimost"
-        "Keywords" = "8:"
+        "ARPCONTACT" = "8:hackuna"
+        "Keywords" = "8:vpn, client, windows, ikev2, fuckrkn1, nezavisimost"
         "ARPCOMMENTS" = "8:Free VPN for free humans"
         "ARPURLINFOABOUT" = "8:https://fuckrkn1.org/"
         "ARPPRODUCTICON" = "8:_F55C5A1DC1604281852FE8EB55EB5B18"
@@ -370,7 +360,7 @@
             "Target" = "8:_B758CC9D1D1C4D4992CD70102ACA236E"
             "Folder" = "8:_F67C6CB7231A4D59961833886D5B2592"
             "WorkingFolder" = "8:_64F92BACB3F44A8294ABFA1600114AC6"
-            "Icon" = "8:"
+            "Icon" = "8:_F55C5A1DC1604281852FE8EB55EB5B18"
             "Feature" = "8:"
             }
         }

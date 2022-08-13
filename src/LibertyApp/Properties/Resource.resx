@@ -144,9 +144,6 @@
   <data name="Patreon" xml:space="preserve">
     <value>https://www.patreon.com/2pizza</value>
   </data>
-  <data name="PhoneBookPath" xml:space="preserve">
-    <value>./Resources/fuckrkn1.pbk</value>
-  </data>
   <data name="ServerName" xml:space="preserve">
     <value>lt.fuckrkn1.xyz</value>
   </data>

@@ -162,4 +162,28 @@ public static class ConnectionSetup
 		process.Start();
 		process.WaitForExit();
 	}
+
+	/// <summary>
+	/// Disconnect
+	/// </summary>
+	public static void Disconnect()
+	{
+		using var process = new Process
+		{
+			StartInfo = new ProcessStartInfo("cmd.exe")
+			{
+				WorkingDirectory = Environment.CurrentDirectory,
+				UseShellExecute = false,
+				CreateNoWindow = true,
+				ArgumentList = {
+					"/c",
+					"rasdial",
+					"/d"
+				},
+			},
+		};
+
+		process.Start();
+		process.WaitForExit();
+	}
 }

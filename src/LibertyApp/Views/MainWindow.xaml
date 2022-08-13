@@ -37,7 +37,7 @@
 
                     <Button Background="#ec6a5e"
                             ToolTip="{x:Static language:Strings.CloseButtonTooltip}"
-                            Command="{Binding ShutdownWindowAsyncCommand}"
+                            Command="{Binding ShutdownWindowCommand}"
                             Style="{StaticResource TitleBarButton}"/>
 
                     <!--<Button Background="#f4bf4f" IsEnabled="False"

@@ -142,15 +142,6 @@ namespace LibertyApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ./Resources/fuckrkn1.pbk.
-        /// </summary>
-        public static string PhoneBookPath {
-            get {
-                return ResourceManager.GetString("PhoneBookPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to lt.fuckrkn1.xyz.
         /// </summary>
         public static string ServerName {

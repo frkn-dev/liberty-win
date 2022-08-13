@@ -11,6 +11,8 @@
 		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
 		<PackageProjectUrl></PackageProjectUrl>
 		<Company>Nezavisimost</Company>
+		<Version>1.0.1</Version>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -99,13 +101,11 @@
 	  <Resource Include="Resources\patreon-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Resources\splashscreen.jpg" />
+	  <Resource Include="Resources\splashscreen.ru-RU.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\splashscreen.jpg">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
-	  <Resource Include="Resources\splashscreen.ru-RU.jpg" />
 	  <Resource Include="Resources\telegram-logo.png" />
 	  <Resource Include="Resources\twitter-logo.png" />
 	  <Resource Include="Resources\usdt-logo.png">
@@ -141,9 +141,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Resources\fuckrkn1.pbk">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
 	  <None Update="Resources\vpnclient.p12">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
