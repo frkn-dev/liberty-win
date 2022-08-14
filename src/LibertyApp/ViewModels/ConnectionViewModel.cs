@@ -1,4 +1,5 @@
 ﻿using LibertyApp.Language;
+using LibertyApp.Models;
 using LibertyApp.Properties;
 using LibertyApp.Views;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -104,9 +105,9 @@ public class ConnectionViewModel : ObservableObject
     }
 	private double _uploadSpeed;
 
-	private NetworkInterface[] _networkInterfaces;
-	private Dictionary<NetworkInterface, double> _lastReceievedBytes;
-	private Dictionary<NetworkInterface, double> _lastSentBytes;
+
+	private readonly ConnectionSpeed connectionSpeed;
+
 
 	#endregion
 
@@ -114,15 +115,7 @@ public class ConnectionViewModel : ObservableObject
 
 	public ConnectionViewModel()
 	{
-		_networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-		_lastReceievedBytes = new Dictionary<NetworkInterface, double>();
-		_lastSentBytes = new Dictionary<NetworkInterface, double>();
-
-        foreach (var networkInterface in _networkInterfaces)
-        {
-			_lastReceievedBytes.Add(networkInterface, 0);
-			_lastSentBytes.Add(networkInterface, 0);
-        }
+		connectionSpeed = new ConnectionSpeed();
 
 		_dispatcherTimer = new DispatcherTimer
 		{
@@ -312,31 +305,8 @@ public class ConnectionViewModel : ObservableObject
 		if (!IsConnected)
 			return;
 
-		double totalReceived = 0;
-		double totalSent = 0;
-
-        foreach (var networkInterface in _networkInterfaces)
-        {
-			var statistic = networkInterface.GetIPStatistics();
-
-			// download
-			var received = statistic.BytesReceived;
-			var diff = received - _lastReceievedBytes[networkInterface];
-			totalReceived += diff;
-
-			// upload
-			var sent = statistic.BytesSent;
-			diff = sent - _lastSentBytes[networkInterface];
-			totalSent += diff;
-
-			_lastReceievedBytes[networkInterface] = received;
-			_lastSentBytes[networkInterface] = sent;
-        }
-
-		DownloadSpeed = totalReceived / 1024 / 1024 * 8;
-		UploadSpeed = totalSent / 1024 / 1024 * 8;
-
-		Trace.WriteLine("\nSpeed sized\n");
+		DownloadSpeed = connectionSpeed.CalculateDownloadSpeed();
+		UploadSpeed = connectionSpeed.CalculateUploadSpeed();
 	}
 
 	#endregion
