@@ -11,7 +11,7 @@
 		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
 		<PackageProjectUrl></PackageProjectUrl>
 		<Company>Nezavisimost</Company>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
@@ -33,6 +33,7 @@
 	  <None Remove="Resources\button-pressed.png" />
 	  <None Remove="Resources\button.png" />
 	  <None Remove="Resources\credobank-logo.png" />
+	  <None Remove="Resources\download-bullet.png" />
 	  <None Remove="Resources\ethereum-logo.png" />
 	  <None Remove="Resources\github-logo.png" />
 	  <None Remove="Resources\icon.ico" />
@@ -42,6 +43,7 @@
 	  <None Remove="Resources\splashscreen.ru-RU.jpg" />
 	  <None Remove="Resources\telegram-logo.png" />
 	  <None Remove="Resources\twitter-logo.png" />
+	  <None Remove="Resources\upload-bullet.png" />
 	  <None Remove="Resources\usdt-logo.png" />
 	</ItemGroup>
 
@@ -84,6 +86,7 @@
 	  <Resource Include="Resources\credobank-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Resources\download-bullet.png" />
 	  <Resource Include="Resources\ethereum-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -104,6 +107,7 @@
 	<ItemGroup>
 	  <Resource Include="Resources\telegram-logo.png" />
 	  <Resource Include="Resources\twitter-logo.png" />
+	  <Resource Include="Resources\upload-bullet.png" />
 	  <Resource Include="Resources\usdt-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>

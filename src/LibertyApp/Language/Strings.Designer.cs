@@ -243,6 +243,15 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File with encryption keys not found..
         /// </summary>
         public static string EncryptionKeysFileNotFound {
@@ -293,6 +302,15 @@ namespace LibertyApp.Language {
         public static string MaximizeButtonTooltip {
             get {
                 return ResourceManager.GetString("MaximizeButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mb/s.
+        /// </summary>
+        public static string Mbps {
+            get {
+                return ResourceManager.GetString("Mbps", resourceCulture);
             }
         }
         
@@ -360,6 +378,15 @@ namespace LibertyApp.Language {
         public static string StatusDisconnected {
             get {
                 return ResourceManager.GetString("StatusDisconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        public static string Upload {
+            get {
+                return ResourceManager.GetString("Upload", resourceCulture);
             }
         }
     }

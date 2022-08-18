@@ -179,6 +179,9 @@ for free humans</value>
   <data name="DonateText" xml:space="preserve">
     <value>You can support us with donations or any other contribution to improve the service. Pulling requests and creating issues also helps us a lot.</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="EncryptionKeysFileNotFound" xml:space="preserve">
     <value>File with encryption keys not found.</value>
   </data>
@@ -196,6 +199,9 @@ for free humans</value>
   </data>
   <data name="MaximizeButtonTooltip" xml:space="preserve">
     <value>Maximize window</value>
+  </data>
+  <data name="Mbps" xml:space="preserve">
+    <value>Mb/s</value>
   </data>
   <data name="MinimizeButtonTooltip" xml:space="preserve">
     <value>Minimize window</value>
@@ -221,5 +227,8 @@ If you click «No», the application will be closed.</value>
   </data>
   <data name="StatusDisconnected" xml:space="preserve">
     <value>Disconnected</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
   </data>
 </root>

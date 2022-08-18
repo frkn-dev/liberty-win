@@ -8,7 +8,7 @@
              xmlns:libertyApp="clr-namespace:LibertyApp"
              d:DataContext="{d:DesignInstance Type=viewmodels:AboutViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="620" d:DesignWidth="340"
+             d:DesignHeight="574" d:DesignWidth="340"
              Background="{DynamicResource BackgroundImage}">
 
     <UserControl.Resources>
