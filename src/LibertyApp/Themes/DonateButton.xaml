@@ -8,6 +8,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/Resources/font/#Exo 2"/>
 
         <Setter Property="Template">
             <Setter.Value>

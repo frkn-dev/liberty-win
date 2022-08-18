@@ -35,6 +35,8 @@
 	  <None Remove="Resources\credobank-logo.png" />
 	  <None Remove="Resources\download-bullet.png" />
 	  <None Remove="Resources\ethereum-logo.png" />
+	  <None Remove="Resources\font\Exo2-Regular.ttf" />
+	  <None Remove="Resources\font\Exo2-SemiBold.ttf" />
 	  <None Remove="Resources\github-logo.png" />
 	  <None Remove="Resources\icon.ico" />
 	  <None Remove="Resources\near-logo.png" />
@@ -90,6 +92,8 @@
 	  <Resource Include="Resources\ethereum-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Resources\font\Exo2-Regular.ttf" />
+	  <Resource Include="Resources\font\Exo2-SemiBold.ttf" />
 	  <Resource Include="Resources\github-logo.png" />
 	  <Resource Include="Resources\icon.ico">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
