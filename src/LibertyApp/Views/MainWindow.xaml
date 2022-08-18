@@ -7,58 +7,19 @@
         xmlns:language="clr-namespace:LibertyApp.Language"
         mc:Ignorable="d"
         Title="{x:Static language:Strings.AppName}"
-        Width="340" Height="600"
-        MinWidth="340" MinHeight="600"
-        MaxWidth="340" MaxHeight="600"
-        Background="Transparent"
-        AllowsTransparency="True"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen" BorderBrush="#6d6c74" BorderThickness="1">
+        Width="340" Height="620"
+        MinWidth="340" MinHeight="620"
+        MaxWidth="340" MaxHeight="620"
+        WindowStartupLocation="CenterScreen" 
+        BorderBrush="#6d6c74" 
+        BorderThickness="1"
+        Closing="Window_Closing">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
 
     <DockPanel Background="#FAFAFA">
-
-        <Border Height="28" Background="#282732" DockPanel.Dock="Top">
-            <Border.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding MoveWindowCommand}"/>
-                <!--<MouseBinding MouseAction="LeftDoubleClick" Command="{Binding MaximizeWindowCommand}"/>-->
-            </Border.InputBindings>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="4,0,4,0">
-
-                    <Button Background="#ec6a5e"
-                            ToolTip="{x:Static language:Strings.CloseButtonTooltip}"
-                            Command="{Binding ShutdownWindowCommand}"
-                            Style="{StaticResource TitleBarButton}"/>
-
-                    <!--<Button Background="#f4bf4f" IsEnabled="False"
-                            ToolTip="{x:Static language:Strings.MaximizeButtonTooltip}"
-                            Command="{Binding MaximizeWindowCommand}"
-                            Style="{StaticResource TitleBarButton}"/>-->
-
-                    <Button Background="#61c554"
-                            ToolTip="{x:Static language:Strings.MinimizeButtonTooltip}"
-                            Command="{Binding MinimizeWindowCommand}"
-                            Style="{StaticResource TitleBarButton}"/>
-                </StackPanel>
-
-                <TextBlock Grid.Column="1" Text="{x:Static language:Strings.AppName}"
-                           Foreground="White"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,100,0"/>
-            </Grid>
-        </Border>
 
         <Border DockPanel.Dock="Top" Background="#EFEFEF">
             <Grid>

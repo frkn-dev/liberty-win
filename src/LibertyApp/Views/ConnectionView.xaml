@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodels="clr-namespace:LibertyApp.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="574" d:DesignWidth="340"
+             d:DesignHeight="620" d:DesignWidth="340"
              d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
              Background="{DynamicResource BackgroundImage}"
              Name="ConnectionControl">
@@ -15,9 +15,9 @@
         <ImageBrush x:Key="BackgroundImage" ImageSource="{DynamicResource BgDefault}"/>
     </UserControl.Resources>
 
-    <Grid Height="574" Width="340">
+    <Grid Height="620" Width="340">
 
-        <Button  Margin="115,240,115,177"
+        <Button  Margin="98,204,115,177"
                  x:Name="ConnectionButton"
                  IsCancel="True"
                  Style="{StaticResource ConnectButton}"
