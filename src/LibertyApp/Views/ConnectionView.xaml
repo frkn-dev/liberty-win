@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <ImageSource x:Key="BgDefault">/Resources/background.jpg</ImageSource>
         <ImageBrush x:Key="BackgroundImage" ImageSource="{DynamicResource BgDefault}"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
 
     <Grid Height="574" Width="340">
@@ -38,6 +39,24 @@
                    Height="28"
                    RenderTransformOrigin="0.511,1.557"
                    Text="{Binding Timer, StringFormat=\{0:hh\\:mm\\:ss\}}" />
+
+        <StackPanel x:Name="ConnectionSpeedView" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="50 0 0 60" Visibility="{Binding IsConnected, Converter={StaticResource BoolToVis}}">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="DownloadSpeed" Text="{Binding DownloadSpeed, StringFormat=\{0:0.00\}}" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Mb/s" VerticalAlignment="Bottom" FontSize="15" Margin="10 0 0 0"/>
+                </StackPanel>
+                <TextBlock Text="Download"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="40 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="UploadSpeed" Text="{Binding UploadSpeed, StringFormat=\{0:0.00\}}" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Mb/s" VerticalAlignment="Bottom" FontSize="15" Margin="10 0 0 0"/>
+                </StackPanel>
+                <TextBlock Text="Upload"/>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 
