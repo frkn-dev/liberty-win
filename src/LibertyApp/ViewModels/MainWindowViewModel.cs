@@ -1,36 +1,25 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Windows;
 
 namespace LibertyApp.ViewModels;
 
 public class MainWindowViewModel : ObservableObject
 {
-	#region Properties
-
-	private object _currentView;
-	public object CurrentView
-	{
-		get => _currentView;
-		set => SetProperty(ref _currentView, value);
-	}
-
 	public ConnectionViewModel ConnectionViewModel { get; }
 	public AboutViewModel AboutViewModel { get; }
 	public DonateViewModel DonateViewModel { get; }
-
-	#endregion
-
-	#region Commands
 
 	public IRelayCommand ShowConnectionViewCommand { get; }
 	public IRelayCommand ShowAboutViewCommand { get; }
 	public IRelayCommand ShowDonateViewCommand { get; }
 
-	#endregion
-
-	#region Constructors
+	public object CurrentView
+	{
+		get => _currentView;
+		private set => SetProperty(ref _currentView, value);
+	}
+	private object _currentView;
 
 	public MainWindowViewModel()
 	{
@@ -40,22 +29,8 @@ public class MainWindowViewModel : ObservableObject
 
 		CurrentView = ConnectionViewModel;
 
-		App.Current.MainWindow.MaxHeight = SystemParameters.MaximumWindowTrackHeight;
-
-		ShowConnectionViewCommand = new RelayCommand(ShowConnectionView);
-		ShowAboutViewCommand = new RelayCommand(ShowAboutView);
-		ShowDonateViewCommand = new RelayCommand(ShowDonateView);
+		ShowConnectionViewCommand = new RelayCommand(() => CurrentView = ConnectionViewModel);
+		ShowAboutViewCommand = new RelayCommand(() => CurrentView = AboutViewModel);
+		ShowDonateViewCommand = new RelayCommand(() => CurrentView = DonateViewModel);
 	}
-
-	#endregion
-
-	#region Private methods
-
-	private void ShowConnectionView() => CurrentView = ConnectionViewModel;
-
-	private void ShowAboutView() => CurrentView = AboutViewModel;
-
-	private void ShowDonateView() => CurrentView = DonateViewModel;
-
-	#endregion
 }

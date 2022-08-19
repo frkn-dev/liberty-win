@@ -130,6 +130,9 @@ for free humans</value>
   <data name="AboutText" xml:space="preserve">
     <value>Today, freedom of speech is especially vulnerable. Independent media are banned, people are brainwashed with propaganda, VPN services are blocked, and it is dangerous to express one's position and opinion. This is the reason why we took on this project. It is non-commercial, no profit is pursued either. We are rather small, but yet, we have a great potential.</value>
   </data>
+  <data name="AppInTrayNotify" xml:space="preserve">
+    <value>App minimized into tray</value>
+  </data>
   <data name="ApplicationWillBeClosed" xml:space="preserve">
     <value>The application will be closed.</value>
   </data>
@@ -198,7 +201,7 @@ for free humans</value>
     <value>Exiting the application will close the connection. Do you want to close connection and exit?</value>
   </data>
   <data name="Mbps" xml:space="preserve">
-    <value>Mb/s</value>
+    <value>Mbps</value>
   </data>
   <data name="NeedForEncryptionKeys" xml:space="preserve">
     <value>Need for encryption keys</value>
