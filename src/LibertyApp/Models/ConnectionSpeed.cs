@@ -1,17 +1,28 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibertyApp.Models;
 
-public class ConnectionSpeed
+public class ConnectionSpeed : ObservableObject
 {
     private readonly NetworkInterface[] _networkInterfaces;
-    private Dictionary<NetworkInterface, long> _lastReceivedBytes;
-    private Dictionary<NetworkInterface, long> _lastSentBytes;
+    private readonly Dictionary<NetworkInterface, long> _lastReceivedBytes;
+    private readonly Dictionary<NetworkInterface, long> _lastSentBytes;
+
+    public double Download
+    {
+        get => _download;
+        private set => SetProperty(ref _download, value);
+    }
+    private double _download;
+
+    public double Upload
+    {
+        get => _upload;
+        private set => SetProperty(ref _upload, value);
+    }
+    private double _upload;
 
     public ConnectionSpeed()
     {
@@ -28,7 +39,7 @@ public class ConnectionSpeed
         }
     }
 
-    public double CalculateDownloadSpeed()
+    public void CalculateDownloadSpeed()
     {
         long totalDownloadBytes = 0;
         foreach (var networkInterface in _networkInterfaces)
@@ -41,11 +52,10 @@ public class ConnectionSpeed
             _lastReceivedBytes[networkInterface] = newValue;
         }
 
-        return totalDownloadBytes / 1024.0 / 1024.0 * 8.0;
+        Download = totalDownloadBytes / 1024.0 / 1024.0 * 8.0;
     }
 
-
-    public double CalculateUploadSpeed()
+    public void CalculateUploadSpeed()
     {
         long totalUploadBytes = 0;
         foreach (var networkInterface in _networkInterfaces)
@@ -58,7 +68,7 @@ public class ConnectionSpeed
             _lastSentBytes[networkInterface] = newValue;
         }
 
-        return totalUploadBytes / 1024.0 / 1024.0 * 8.0;
+        Upload = totalUploadBytes / 1024.0 / 1024.0 * 8.0;
     }
 }
 

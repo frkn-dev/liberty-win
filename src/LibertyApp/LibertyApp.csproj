@@ -12,9 +12,13 @@
 		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
 		<PackageProjectUrl></PackageProjectUrl>
 		<Company>Nezavisimost</Company>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="Windows" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Remove="Language\Strings.en.resx" />
@@ -41,8 +45,6 @@
 	  <None Remove="Resources\github-logo.png" />
 	  <None Remove="Resources\near-logo.png" />
 	  <None Remove="Resources\patreon-logo.png" />
-	  <None Remove="Resources\splashscreen.jpg" />
-	  <None Remove="Resources\splashscreen.ru-RU.jpg" />
 	  <None Remove="Resources\telegram-logo.png" />
 	  <None Remove="Resources\twitter-logo.png" />
 	  <None Remove="Resources\upload-bullet.png" />
@@ -101,8 +103,6 @@
 	  <Resource Include="Resources\patreon-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
-	  <Resource Include="Resources\splashscreen.jpg" />
-	  <Resource Include="Resources\splashscreen.ru-RU.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

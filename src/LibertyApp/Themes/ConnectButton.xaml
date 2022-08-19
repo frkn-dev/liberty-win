@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="{x:Type Button}" x:Key="ConnectButton">
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ConnectButton">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Width" Value="110" />
         <Setter Property="Height" Value="110" />
@@ -8,23 +8,24 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <StackPanel Orientation="Horizontal" >
-                        <Image Name="PART_Image" Source="../Resources/button.png" RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True" />
+                        <Image Name="ButtonImage" Source="../Resources/button.png" RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="../Resources/button-hover.png" TargetName="PART_Image"/>
+                            <Setter Property="Source" Value="../Resources/button-hover.png" TargetName="ButtonImage"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Source" Value="../Resources/button-pressed.png" TargetName="PART_Image"/>
+                            <Setter Property="Source" Value="../Resources/button-pressed.png" TargetName="ButtonImage"/>
                         </Trigger>
-                        <Trigger Property="IsCancel" Value="False">
-                            <Setter Property="Source" Value="../Resources/button-active.png" TargetName="PART_Image"/>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Source" Value="../Resources/button-active.png" TargetName="ButtonImage"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

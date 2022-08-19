@@ -5,7 +5,6 @@ using LibertyApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using Application = System.Windows.Application;
@@ -43,9 +42,6 @@ public partial class App : Application
 
 		ConnectionSetup.ImportPfx();
 
-		var splashScreen = ShowSplashScreen(Thread.CurrentThread.CurrentUICulture.Name);
-		splashScreen.Show(true);
-
 		MainWindow = new MainWindow();
 		MainWindow.Closing += (sender, args) =>
 		{
@@ -69,6 +65,7 @@ public partial class App : Application
 						MessageBoxImage.Question) == MessageBoxResult.Yes)
 				{
 					ConnectionSetup.Disconnect();
+					App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusDisconnected, ToolTipIcon.Info);
 					CloseApp();
 				}
 			}
@@ -82,15 +79,6 @@ public partial class App : Application
 
 		base.OnStartup(e);
 	}
-
-	/// <summary>
-	/// Splash screen localization
-	/// </summary>
-	private static SplashScreen ShowSplashScreen(string local) => local switch
-	{
-		"ru-RU" => new SplashScreen("Resources/splashscreen.ru-RU.jpg"),
-		_ => new SplashScreen("Resources/splashscreen.jpg"),
-	};
 
 	/// <summary>
 	/// Show/hide main window
@@ -110,13 +98,14 @@ public partial class App : Application
 			case WindowState.Normal:
 				MainWindow.WindowState = WindowState.Minimized;
 				MainWindow.ShowInTaskbar = false;
+				App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.AppInTrayNotify, ToolTipIcon.Info);
 				break;
 			case WindowState.Maximized:
 				MainWindow.WindowState = WindowState.Minimized;
 				MainWindow.ShowInTaskbar = false;
 				break;
 			default:
-				throw new ArgumentOutOfRangeException();
+				throw new ArgumentOutOfRangeException(nameof(MainWindow.WindowState));
 		}
 	}
 

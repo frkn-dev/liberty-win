@@ -7,7 +7,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -34,14 +34,24 @@ public class ConnectionViewModel : ObservableObject
 	/// </summary>
 	private static readonly ImageBrush[] BackgroundImageStates =
 	{
-		new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/background.jpg"))),
-		new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connecting.jpg"))),
-		new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connected.jpg")))
+		new(new BitmapImage(new Uri("pack://application:,,,/Resources/background.jpg"))),
+		new(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connecting.jpg"))),
+		new(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connected.jpg")))
 	};
 
 	#endregion
 
 	#region Public properties
+
+	public ConnectionSpeed ConnectionSpeed { get; }
+
+	public Brush BackgroundImage
+	{
+		get => _backgroundImage;
+		private set => SetProperty(ref _backgroundImage, value);
+	}
+
+	private Brush _backgroundImage;
 
 	/// <summary>
 	/// Connection button state text and tooltip
@@ -49,8 +59,9 @@ public class ConnectionViewModel : ObservableObject
 	public string ConnectButtonText
 	{
 		get => _connectButtonText;
-		set => SetProperty(ref _connectButtonText, value);
+		private set => SetProperty(ref _connectButtonText, value);
 	}
+
 	private string _connectButtonText = Strings.ConnectText;
 
 	/// <summary>
@@ -59,8 +70,9 @@ public class ConnectionViewModel : ObservableObject
 	public string ConnectionState
 	{
 		get => _connectionState;
-		set => SetProperty(ref _connectionState, value);
+		private set => SetProperty(ref _connectionState, value);
 	}
+
 	private string _connectionState = Strings.StatusDisconnected;
 
 	/// <summary>
@@ -69,8 +81,9 @@ public class ConnectionViewModel : ObservableObject
 	public TimeSpan Timer
 	{
 		get => _timer;
-		set => SetProperty(ref _timer, value);
+		private set => SetProperty(ref _timer, value);
 	}
+
 	private TimeSpan _timer;
 
 	/// <summary>
@@ -79,33 +92,10 @@ public class ConnectionViewModel : ObservableObject
 	public bool IsConnected
 	{
 		get => _isConnected;
-		set => SetProperty(ref _isConnected, value);
+		private set => SetProperty(ref _isConnected, value);
 	}
-	private bool _isConnected;
 
-	/// <summary>
-	/// Current download connection speed
-	/// </summary>
-	public double DownloadSpeed
-	{
-		get => _downloadSpeed;
-		set => SetProperty(ref _downloadSpeed, value);
-	}
-	private double _downloadSpeed;
-
-	/// <summary>
-	/// Current upload connection speed;
-	/// </summary>
-	public double UploadSpeed
-	{
-		get => _uploadSpeed;
-		set => SetProperty(ref _uploadSpeed, value);
-	}
-	private double _uploadSpeed;
-
-
-	private readonly ConnectionSpeed connectionSpeed;
-
+	private bool _isConnected = false;
 
 	#endregion
 
@@ -113,7 +103,9 @@ public class ConnectionViewModel : ObservableObject
 
 	public ConnectionViewModel()
 	{
-		connectionSpeed = new ConnectionSpeed();
+		BackgroundImage = BackgroundImageStates[0];
+
+		ConnectionSpeed = new ConnectionSpeed();
 
 		_dispatcherTimer = new DispatcherTimer
 		{
@@ -124,9 +116,9 @@ public class ConnectionViewModel : ObservableObject
 		{
 			Timer = DateTime.Now - _startTime;
 			CommandManager.InvalidateRequerySuggested();
+			ConnectionSpeed.CalculateDownloadSpeed();
+			ConnectionSpeed.CalculateUploadSpeed();
 		};
-
-		_dispatcherTimer.Tick += CheckConnectionSpeed;
 
 		ConnectCommandAsync = new AsyncRelayCommand<object>(ConnectAsync);
 	}
@@ -149,7 +141,6 @@ public class ConnectionViewModel : ObservableObject
 
 		try
 		{
-
 			// prepare connection process
 			using var process = new Process
 			{
@@ -158,10 +149,11 @@ public class ConnectionViewModel : ObservableObject
 					WorkingDirectory = Environment.CurrentDirectory,
 					UseShellExecute = false,
 					CreateNoWindow = true,
-					ArgumentList = {
-							"/c",
-							"rasdial",
-						},
+					ArgumentList =
+					{
+						"/c",
+						"rasdial",
+					},
 				},
 			};
 
@@ -169,7 +161,7 @@ public class ConnectionViewModel : ObservableObject
 			if (IsConnected)
 			{
 				// change interface properties
-				ShowConnectingAssets(control);
+				ShowConnectingAssets();
 				ConnectButtonText = ConnectionState = Strings.DisconnectingText;
 
 				// argument to disconnect
@@ -179,8 +171,13 @@ public class ConnectionViewModel : ObservableObject
 				await process.WaitForExitAsync();
 
 				// handle result
-				/* List of error codes for dial-up connections or VPN connections: https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/error-codes-for-dial-up-vpn-connection */
-				/* Routing and Remote Access Error Codes: https://docs.microsoft.com/en-us/windows/win32/rras/routing-and-remote-access-error-codes */
+
+				/* List of error codes for dial-up connections or VPN connections:
+					https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/error-codes-for-dial-up-vpn-connection */
+
+				/* Routing and Remote Access Error Codes:
+					https://docs.microsoft.com/en-us/windows/win32/rras/routing-and-remote-access-error-codes */
+
 				switch (process.ExitCode)
 				{
 					// disconnect success
@@ -190,19 +187,17 @@ public class ConnectionViewModel : ObservableObject
 						Timer = TimeSpan.Zero;
 						// change interface properties
 						IsConnected = false;
-						ShowDefaultAssets(control);
+						ShowDefaultAssets();
 						ConnectButtonText = Strings.ConnectText;
 						ConnectionState = Strings.StatusDisconnected;
+						App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusDisconnected, ToolTipIcon.Info);
 						break;
 
 					// handle any disconnecting errors
 					default:
-						MessageBox.Show(process.ExitCode.ToString(),
-							Strings.ConnectionErrorCaption,
-							MessageBoxButton.OK,
-							MessageBoxImage.Error);
+						App.Current.NotifyIcon.ShowBalloonTip(3000, Strings.ConnectionErrorCaption, process.ExitCode.ToString(), ToolTipIcon.Error);
 						// change interface properties
-						ShowDefaultAssets(control);
+						ShowDefaultAssets();
 						ConnectButtonText = Strings.ConnectText;
 						ConnectionState = Strings.StatusDisconnected;
 						break;
@@ -212,7 +207,7 @@ public class ConnectionViewModel : ObservableObject
 			else
 			{
 				// change interface properties
-				ShowConnectingAssets(control);
+				ShowConnectingAssets();
 				ConnectButtonText = Strings.ConnectingText;
 				ConnectionState = Strings.StatusConnecting;
 
@@ -232,19 +227,18 @@ public class ConnectionViewModel : ObservableObject
 						_dispatcherTimer.Start();
 						// change interface properties
 						IsConnected = true;
-						ShowConnectedAssets(control);
+						ShowConnectedAssets();
 						ConnectButtonText = Strings.DisconnectText;
 						ConnectionState = Strings.StatusConnected;
+						App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusConnected,
+							ToolTipIcon.Info);
 						break;
 
 					// any errors
 					default:
-						MessageBox.Show(process.ExitCode.ToString(),
-							Strings.ConnectionErrorCaption,
-							MessageBoxButton.OK,
-							MessageBoxImage.Error);
+						App.Current.NotifyIcon.ShowBalloonTip(3000, Strings.ConnectionErrorCaption, process.ExitCode.ToString(), ToolTipIcon.Error);
 						// change interface properties
-						ShowDefaultAssets(control);
+						ShowDefaultAssets();
 						ConnectButtonText = Strings.ConnectText;
 						ConnectionState = Strings.StatusDisconnected;
 						break;
@@ -253,14 +247,11 @@ public class ConnectionViewModel : ObservableObject
 		}
 		catch (Exception e)
 		{
-			MessageBox.Show($"{e.Message}",
-				Strings.ConnectionErrorCaption,
-				MessageBoxButton.OK,
-				MessageBoxImage.Error);
+			App.Current.NotifyIcon.ShowBalloonTip(3000, Strings.ConnectionErrorCaption, e.Message, ToolTipIcon.Error);
 
 			// change interface properties
 			IsConnected = false;
-			ShowDefaultAssets(control);
+			ShowDefaultAssets();
 			ConnectButtonText = Strings.ConnectText;
 			ConnectionState = Strings.StatusDisconnected;
 		}
@@ -273,38 +264,17 @@ public class ConnectionViewModel : ObservableObject
 	/// <summary>
 	/// Set control default background state
 	/// </summary>
-	/// <param name="control"></param>
-	private static void ShowDefaultAssets(ConnectionView control)
-	{
-		control.Background = BackgroundImageStates[0];
-		control.ConnectionButton.IsCancel = true;
-	}
+	private void ShowDefaultAssets() => BackgroundImage = BackgroundImageStates[0];
 
 	/// <summary>
 	/// Set control background state to connecting
 	/// </summary>
-	/// <param name="control"></param>
-	private static void ShowConnectingAssets(ConnectionView control) =>
-		control.Background = BackgroundImageStates[1];
+	private void ShowConnectingAssets() => BackgroundImage = BackgroundImageStates[1];
 
 	/// <summary>
 	/// Set control background state to connected
 	/// </summary>
-	/// <param name="control"></param>
-	private static void ShowConnectedAssets(ConnectionView control)
-	{
-		control.Background = BackgroundImageStates[2];
-		control.ConnectionButton.IsCancel = false;
-	}
-
-
-	private void CheckConnectionSpeed(object sender, EventArgs e)
-	{
-		if (!IsConnected) return;
-
-		DownloadSpeed = connectionSpeed.CalculateDownloadSpeed();
-		UploadSpeed = connectionSpeed.CalculateUploadSpeed();
-	}
+	private void ShowConnectedAssets() => BackgroundImage = BackgroundImageStates[2];
 
 	#endregion
 }

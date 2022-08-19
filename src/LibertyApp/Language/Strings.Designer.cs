@@ -98,6 +98,15 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App minimized into tray.
+        /// </summary>
+        public static string AppInTrayNotify {
+            get {
+                return ResourceManager.GetString("AppInTrayNotify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The application will be closed..
         /// </summary>
         public static string ApplicationWillBeClosed {
@@ -297,7 +306,7 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mb/s.
+        ///   Looks up a localized string similar to Mbps.
         /// </summary>
         public static string Mbps {
             get {

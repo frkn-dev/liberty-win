@@ -5,6 +5,9 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Forms;
+using Clipboard = System.Windows.Clipboard;
+using MessageBox = System.Windows.MessageBox;
 
 namespace LibertyApp.ViewModels;
 
@@ -37,10 +40,7 @@ public class DonateViewModel : ObservableObject
 
 			Clipboard.SetText(credentials);
 
-			MessageBox.Show(string.Format(Strings.CopyToClipboardMessage, parameter, credentials),
-				Strings.CopyToClipboardCaption,
-				MessageBoxButton.OK,
-				MessageBoxImage.Information);
+			App.Current.NotifyIcon.ShowBalloonTip(3000, Strings.CopyToClipboardCaption, string.Format(Strings.CopyToClipboardMessage, parameter, credentials), ToolTipIcon.Info);
 		}
 		catch (Exception e)
 		{
