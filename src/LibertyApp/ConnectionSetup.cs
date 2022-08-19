@@ -76,6 +76,9 @@ public static class ConnectionSetup
 							App.Current.Shutdown();
 							break;
 					}
+
+					CreateConnection();
+					SettingIpSecConfiguration();
 				}
 				else
 				{

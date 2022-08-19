@@ -21,15 +21,21 @@
 
             <StackPanel Orientation="Vertical">
 
-                <TextBlock TextWrapping="Wrap" FontSize="22" Margin="16,10,16,12" FontWeight="DemiBold"
-                   Text="{x:Static language:Strings.AboutHeader}"/>
+                <TextBlock Margin="16,10,16,12"
+                           TextWrapping="Wrap" 
+                           FontSize="22" FontFamily="/Resources/font/#Exo 2" FontWeight="DemiBold"
+                           Text="{x:Static language:Strings.AboutHeader}"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="16,0,16,14"
-                   Text="{x:Static language:Strings.AboutDescription}" />
+                <TextBlock TextWrapping="Wrap" 
+                           Margin="16,0,16,14"
+                           FontFamily="/Resources/font/#Exo 2" 
+                           Text="{x:Static language:Strings.AboutDescription}" />
 
                 <Image Source="/Resources/about.jpg" RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True" Margin="0,0,0,12" />
 
-                <TextBlock TextWrapping="Wrap" Margin="16,0,16,16"
+                <TextBlock TextWrapping="Wrap" 
+                           Margin="16,0,16,16"
+                           FontFamily="/Resources/font/#Exo 2"
                            Text="{x:Static language:Strings.AboutText}" />
 
                 <Grid>

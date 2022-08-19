@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodels="clr-namespace:LibertyApp.ViewModels"
+             xmlns:language="clr-namespace:LibertyApp.Language"
              mc:Ignorable="d"
              d:DesignHeight="574" d:DesignWidth="340"
              d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
@@ -16,10 +17,10 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
 
-    <Grid Height="574" Width="340">
+    <Grid>
 
-        <Button  Margin="115,240,115,177"
-                 x:Name="ConnectionButton"
+        <Button  Margin="0 110 0 0"
+                 Name="ConnectionButton"
                  IsCancel="True"
                  Style="{StaticResource ConnectButton}"
                  ToolTip="{Binding ConnectButtonText}"
@@ -28,35 +29,65 @@
 
         <TextBlock Name="Status"
                    HorizontalAlignment="Center"
-                   Margin="0,380,0,160"
-                   Height="28"
-                   FontSize="18" FontWeight="DemiBold"
+                   Margin="0 400 0 0"
+                   FontSize="18" FontWeight="DemiBold" FontFamily="/Resources/font/#Exo 2"
                    Text="{Binding ConnectionState}"/>
 
         <TextBlock Name="Timer"
                    HorizontalAlignment="Center"
-                   Margin="0,390,0,117"
-                   Height="28"
-                   RenderTransformOrigin="0.511,1.557"
+                   FontSize="12" FontFamily="/Resources/font/#Exo 2"
+                   Margin="0 430 0 0"
                    Text="{Binding Timer, StringFormat=\{0:hh\\:mm\\:ss\}}" />
 
-        <StackPanel x:Name="ConnectionSpeedView" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="50 0 0 60" Visibility="{Binding IsConnected, Converter={StaticResource BoolToVis}}">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+        <Grid Name="ConnectionSpeedView" 
+              VerticalAlignment="Bottom" 
+              Margin="16 0 16 16"
+              Visibility="{Binding IsConnected, Converter={StaticResource BoolToVis}}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="DownloadSpeed" Text="{Binding DownloadSpeed, StringFormat=\{0:0.00\}}" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="Mb/s" VerticalAlignment="Bottom" FontSize="15" Margin="10 0 0 0"/>
+                    <TextBlock Name="DownloadSpeed" FontSize="18" FontFamily="/Resources/font/#Exo 2" FontWeight="DemiBold" 
+                               Text="{Binding DownloadSpeed, StringFormat=\{0:0.00\}}"/>
+                    <TextBlock VerticalAlignment="Bottom" 
+                               FontSize="12" FontFamily="/Resources/font/#Exo 2"
+                               Foreground="Gray"
+                               Margin="8 0 0 0"
+                               Text="{x:Static language:Strings.Mbps}"/>
                 </StackPanel>
-                <TextBlock Text="Download"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/download-bullet.png"
+                           RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True"
+                           Width="13" Height="13" 
+                           Margin="0 0 8 0"/>
+                    <TextBlock Text="{x:Static language:Strings.Download}" FontSize="12" FontFamily="/Resources/font/#Exo 2" />
+                </StackPanel>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="40 0 0 0">
+            <StackPanel Grid.Column="1" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="UploadSpeed" Text="{Binding UploadSpeed, StringFormat=\{0:0.00\}}" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="Mb/s" VerticalAlignment="Bottom" FontSize="15" Margin="10 0 0 0"/>
+                    <TextBlock Name="UploadSpeed" FontSize="18" FontFamily="/Resources/font/#Exo 2" FontWeight="DemiBold"
+                               Text="{Binding UploadSpeed, StringFormat=\{0:0.00\}}"/>
+                    <TextBlock VerticalAlignment="Bottom" 
+                               FontSize="12" FontFamily="/Resources/font/#Exo 2"
+                               Foreground="Gray"
+                               Margin="8 0 0 0"
+                               Text="{x:Static language:Strings.Mbps}" />
                 </StackPanel>
-                <TextBlock Text="Upload"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/upload-bullet.png" 
+                           RenderOptions.BitmapScalingMode="Fant" SnapsToDevicePixels="True"
+                           Width="13" Height="13" 
+                           Margin="0 0 8 0"/>
+                    <TextBlock Text="{x:Static language:Strings.Upload}" FontSize="12" FontFamily="/Resources/font/#Exo 2" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+
+        </Grid>
 
     </Grid>
 

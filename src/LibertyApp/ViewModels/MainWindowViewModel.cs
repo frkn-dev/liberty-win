@@ -28,9 +28,6 @@ public class MainWindowViewModel : ObservableObject
 	public IRelayCommand ShowConnectionViewCommand { get; }
 	public IRelayCommand ShowAboutViewCommand { get; }
 	public IRelayCommand ShowDonateViewCommand { get; }
-	public IRelayCommand MoveWindowCommand { get; }
-	public IRelayCommand MaximizeWindowCommand { get; }
-	public IRelayCommand MinimizeWindowCommand { get; }
 	public IRelayCommand ShutdownWindowCommand { get; }
 
 	#endregion
@@ -47,9 +44,6 @@ public class MainWindowViewModel : ObservableObject
 
 		App.Current.MainWindow.MaxHeight = SystemParameters.MaximumWindowTrackHeight;
 
-		MoveWindowCommand = new RelayCommand(MoveWindow);
-		MaximizeWindowCommand = new RelayCommand(MaximizeWindow);
-		MinimizeWindowCommand = new RelayCommand(MinimizeWindow);
 		ShutdownWindowCommand = new RelayCommand(ShutdownWindow);
 
 		ShowConnectionViewCommand = new RelayCommand(ShowConnectionView);
@@ -60,17 +54,6 @@ public class MainWindowViewModel : ObservableObject
 	#endregion
 
 	#region Private methods
-
-	private static void MoveWindow() => Application.Current.MainWindow.DragMove();
-
-	private static void MaximizeWindow()
-	{
-		App.Current.MainWindow.WindowState = App.Current.MainWindow.WindowState == WindowState.Maximized
-			? WindowState.Normal
-			: WindowState.Maximized;
-	}
-
-	private static void MinimizeWindow() => App.Current.MainWindow.WindowState = WindowState.Minimized;
 
 	private void ShutdownWindow()
 	{

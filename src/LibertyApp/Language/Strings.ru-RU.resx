@@ -179,6 +179,9 @@
   <data name="DonateText" xml:space="preserve">
     <value>Вы можете поддержать нас пожертвованиями или любым другим вкладом в улучшение сервиса. Pull-реквесты и создание Issues на GitHub также очень помогают нам.</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Приём</value>
+  </data>
   <data name="EncryptionKeysFileNotFound" xml:space="preserve">
     <value>Файл с ключами шифрования не найден.</value>
   </data>
@@ -196,6 +199,9 @@
   </data>
   <data name="MaximizeButtonTooltip" xml:space="preserve">
     <value>Развернуть окно</value>
+  </data>
+  <data name="Mbps" xml:space="preserve">
+    <value>Мб/c</value>
   </data>
   <data name="MinimizeButtonTooltip" xml:space="preserve">
     <value>Свернуть окно</value>
@@ -221,5 +227,8 @@
   </data>
   <data name="StatusDisconnected" xml:space="preserve">
     <value>Отключено</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Отправка</value>
   </data>
 </root>

@@ -34,9 +34,6 @@ public partial class App : Application
         var splashScreen = ShowSplashScreen(Thread.CurrentThread.CurrentUICulture.Name);
         splashScreen.Show(true);
 
-        ConnectionSetup.CreateConnection();
-        ConnectionSetup.SettingIpSecConfiguration();
-
         var mainWindow = new MainWindow();
         mainWindow.Show();
     }
@@ -50,8 +47,6 @@ public partial class App : Application
             ConnectionSetup.Disconnect();
             Current.Shutdown();
         }
-
-        base.OnExit(e);
     }
 
     /// <summary>

@@ -5,9 +5,7 @@ using LibertyApp.Views;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -89,20 +87,20 @@ public class ConnectionViewModel : ObservableObject
 	/// Current download connection speed
 	/// </summary>
 	public double DownloadSpeed
-    {
+	{
 		get => _downloadSpeed;
 		set => SetProperty(ref _downloadSpeed, value);
-    }
+	}
 	private double _downloadSpeed;
 
 	/// <summary>
 	/// Current upload connection speed;
 	/// </summary>
 	public double UploadSpeed
-    {
+	{
 		get => _uploadSpeed;
 		set => SetProperty(ref _uploadSpeed, value);
-    }
+	}
 	private double _uploadSpeed;
 
 
@@ -128,19 +126,19 @@ public class ConnectionViewModel : ObservableObject
 			CommandManager.InvalidateRequerySuggested();
 		};
 
-        _dispatcherTimer.Tick += CheckConnectionSpeed;
+		_dispatcherTimer.Tick += CheckConnectionSpeed;
 
 		ConnectCommandAsync = new AsyncRelayCommand<object>(ConnectAsync);
 	}
 
-    #endregion
+	#endregion
 
-    #region Commands
+	#region Commands
 
-    /// <summary>
-    /// Connection relay command
-    /// </summary>
-    public IAsyncRelayCommand ConnectCommandAsync { get; }
+	/// <summary>
+	/// Connection relay command
+	/// </summary>
+	public IAsyncRelayCommand ConnectCommandAsync { get; }
 
 	/// <summary>
 	/// Connection relay command handler
@@ -302,8 +300,7 @@ public class ConnectionViewModel : ObservableObject
 
 	private void CheckConnectionSpeed(object sender, EventArgs e)
 	{
-		if (!IsConnected)
-			return;
+		if (!IsConnected) return;
 
 		DownloadSpeed = connectionSpeed.CalculateDownloadSpeed();
 		UploadSpeed = connectionSpeed.CalculateUploadSpeed();

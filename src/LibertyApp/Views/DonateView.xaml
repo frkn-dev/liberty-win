@@ -35,10 +35,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  TextWrapping="Wrap" FontSize="22" Margin="16,10,16,12" FontWeight="DemiBold"
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  TextWrapping="Wrap" FontSize="22" FontFamily="/Resources/font/#Exo 2" Margin="16,10,16,12" FontWeight="DemiBold"
                        Text="{x:Static language:Strings.DonateHeader}" />
 
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" TextWrapping="Wrap" Margin="16,0,16,24"
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" TextWrapping="Wrap" Margin="16,0,16,24" FontFamily="/Resources/font/#Exo 2"
                            Text="{x:Static language:Strings.DonateText}"/>
 
             <Button Grid.Column="0" Grid.Row="2"
