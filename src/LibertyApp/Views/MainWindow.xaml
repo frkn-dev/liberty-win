@@ -8,18 +8,15 @@
         mc:Ignorable="d"
         Title="{x:Static language:Strings.AppName}"
         Width="340" Height="640"
-        MinWidth="340" MinHeight="640"
-        MaxWidth="340" MaxHeight="640"
-        WindowStartupLocation="CenterScreen" 
-        BorderBrush="#6d6c74" 
-        BorderThickness="1"
-        Closing="Window_Closing">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        SnapsToDevicePixels="True">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
 
-    <DockPanel Background="#FAFAFA">
+    <DockPanel>
 
         <Border DockPanel.Dock="Top" Background="#EFEFEF">
             <Grid>

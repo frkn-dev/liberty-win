@@ -1,5 +1,4 @@
-﻿using LibertyApp.Language;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Windows;
@@ -28,7 +27,6 @@ public class MainWindowViewModel : ObservableObject
 	public IRelayCommand ShowConnectionViewCommand { get; }
 	public IRelayCommand ShowAboutViewCommand { get; }
 	public IRelayCommand ShowDonateViewCommand { get; }
-	public IRelayCommand ShutdownWindowCommand { get; }
 
 	#endregion
 
@@ -44,8 +42,6 @@ public class MainWindowViewModel : ObservableObject
 
 		App.Current.MainWindow.MaxHeight = SystemParameters.MaximumWindowTrackHeight;
 
-		ShutdownWindowCommand = new RelayCommand(ShutdownWindow);
-
 		ShowConnectionViewCommand = new RelayCommand(ShowConnectionView);
 		ShowAboutViewCommand = new RelayCommand(ShowAboutView);
 		ShowDonateViewCommand = new RelayCommand(ShowDonateView);
@@ -54,26 +50,6 @@ public class MainWindowViewModel : ObservableObject
 	#endregion
 
 	#region Private methods
-
-	private void ShutdownWindow()
-	{
-		if (ConnectionViewModel.IsConnected)
-		{
-			if (MessageBox.Show(Strings.ExitApplicationMessage,
-					Strings.ExitApplicationCaption,
-					MessageBoxButton.YesNo,
-					MessageBoxImage.Question) == MessageBoxResult.Yes)
-			{
-				ConnectionSetup.Disconnect();
-
-				App.Current.Shutdown();
-			}
-		}
-		else
-		{
-			App.Current.Shutdown();
-		}
-	}
 
 	private void ShowConnectionView() => CurrentView = ConnectionViewModel;
 

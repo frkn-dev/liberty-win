@@ -136,9 +136,6 @@ for free humans</value>
   <data name="AppName" xml:space="preserve">
     <value>FuckRKN1</value>
   </data>
-  <data name="CloseButtonTooltip" xml:space="preserve">
-    <value>Close application</value>
-  </data>
   <data name="ConnectingText" xml:space="preserve">
     <value>Connecting…</value>
   </data>
@@ -191,20 +188,17 @@ for free humans</value>
   <data name="ErrorImportEcryptionKeys" xml:space="preserve">
     <value>Import Ecryption Keys Error</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="ExitApplicationCaption" xml:space="preserve">
     <value>Exit the application</value>
   </data>
   <data name="ExitApplicationMessage" xml:space="preserve">
     <value>Exiting the application will close the connection. Do you want to close connection and exit?</value>
   </data>
-  <data name="MaximizeButtonTooltip" xml:space="preserve">
-    <value>Maximize window</value>
-  </data>
   <data name="Mbps" xml:space="preserve">
     <value>Mb/s</value>
-  </data>
-  <data name="MinimizeButtonTooltip" xml:space="preserve">
-    <value>Minimize window</value>
   </data>
   <data name="NeedForEncryptionKeys" xml:space="preserve">
     <value>Need for encryption keys</value>
@@ -218,6 +212,9 @@ If you click «No», the application will be closed.</value>
   </data>
   <data name="OpenInBrowserTooltip" xml:space="preserve">
     <value>Open in browser</value>
+  </data>
+  <data name="ShowHide" xml:space="preserve">
+    <value>Show/hide</value>
   </data>
   <data name="StatusConnected" xml:space="preserve">
     <value>Connected to Freedom</value>

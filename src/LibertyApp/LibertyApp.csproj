@@ -5,13 +5,14 @@
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<Nullable>disable</Nullable>
 		<UseWPF>true</UseWPF>
+		<UseWindowsForms>True</UseWindowsForms>
 		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<SignAssembly>False</SignAssembly>
 		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
 		<PackageProjectUrl></PackageProjectUrl>
 		<Company>Nezavisimost</Company>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
@@ -38,7 +39,6 @@
 	  <None Remove="Resources\font\Exo2-Regular.ttf" />
 	  <None Remove="Resources\font\Exo2-SemiBold.ttf" />
 	  <None Remove="Resources\github-logo.png" />
-	  <None Remove="Resources\icon.ico" />
 	  <None Remove="Resources\near-logo.png" />
 	  <None Remove="Resources\patreon-logo.png" />
 	  <None Remove="Resources\splashscreen.jpg" />
@@ -95,9 +95,6 @@
 	  <Resource Include="Resources\font\Exo2-Regular.ttf" />
 	  <Resource Include="Resources\font\Exo2-SemiBold.ttf" />
 	  <Resource Include="Resources\github-logo.png" />
-	  <Resource Include="Resources\icon.ico">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
 	  <Resource Include="Resources\near-logo.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -145,6 +142,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Resources\icon.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Resources\vpnclient.p12">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
