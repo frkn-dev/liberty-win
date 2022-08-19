@@ -116,15 +116,6 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close application.
-        /// </summary>
-        public static string CloseButtonTooltip {
-            get {
-                return ResourceManager.GetString("CloseButtonTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Connecting….
         /// </summary>
         public static string ConnectingText {
@@ -279,6 +270,15 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit the application.
         /// </summary>
         public static string ExitApplicationCaption {
@@ -297,29 +297,11 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximize window.
-        /// </summary>
-        public static string MaximizeButtonTooltip {
-            get {
-                return ResourceManager.GetString("MaximizeButtonTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mb/s.
         /// </summary>
         public static string Mbps {
             get {
                 return ResourceManager.GetString("Mbps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minimize window.
-        /// </summary>
-        public static string MinimizeButtonTooltip {
-            get {
-                return ResourceManager.GetString("MinimizeButtonTooltip", resourceCulture);
             }
         }
         
@@ -351,6 +333,15 @@ namespace LibertyApp.Language {
         public static string OpenInBrowserTooltip {
             get {
                 return ResourceManager.GetString("OpenInBrowserTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/hide.
+        /// </summary>
+        public static string ShowHide {
+            get {
+                return ResourceManager.GetString("ShowHide", resourceCulture);
             }
         }
         

@@ -36,7 +36,7 @@
         <TextBlock Name="Timer"
                    HorizontalAlignment="Center"
                    FontSize="12" FontFamily="/Resources/font/#Exo 2"
-                   Margin="0 430 0 0"
+                   Margin="0 425 0 0"
                    Text="{Binding Timer, StringFormat=\{0:hh\\:mm\\:ss\}}" />
 
         <Grid Name="ConnectionSpeedView" 

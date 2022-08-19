@@ -136,9 +136,6 @@
   <data name="AppName" xml:space="preserve">
     <value>FuckRKN1</value>
   </data>
-  <data name="CloseButtonTooltip" xml:space="preserve">
-    <value>Закрыть приложение</value>
-  </data>
   <data name="ConnectingText" xml:space="preserve">
     <value>Подключение…</value>
   </data>
@@ -191,20 +188,17 @@
   <data name="ErrorImportEcryptionKeys" xml:space="preserve">
     <value>Ошибка импорта ключей шифрования.</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
   <data name="ExitApplicationCaption" xml:space="preserve">
     <value>Завершение работы приложения</value>
   </data>
   <data name="ExitApplicationMessage" xml:space="preserve">
     <value>Выход из приложения закроет соединение. Вы хотите закрыть соединение и выйти?</value>
   </data>
-  <data name="MaximizeButtonTooltip" xml:space="preserve">
-    <value>Развернуть окно</value>
-  </data>
   <data name="Mbps" xml:space="preserve">
     <value>Мб/c</value>
-  </data>
-  <data name="MinimizeButtonTooltip" xml:space="preserve">
-    <value>Свернуть окно</value>
   </data>
   <data name="NeedForEncryptionKeys" xml:space="preserve">
     <value>Необходимо установить ключи шифрования</value>
@@ -218,6 +212,9 @@
   </data>
   <data name="OpenInBrowserTooltip" xml:space="preserve">
     <value>Открыть в браузере</value>
+  </data>
+  <data name="ShowHide" xml:space="preserve">
+    <value>Показать/скрыть</value>
   </data>
   <data name="StatusConnected" xml:space="preserve">
     <value>Подключен к Cвободе</value>
