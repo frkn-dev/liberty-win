@@ -1,9 +1,8 @@
-﻿using LibertyApp.Language;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LibertyApp.Language;
 using LibertyApp.Models;
 using LibertyApp.Properties;
-using LibertyApp.Views;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -120,7 +119,7 @@ public class ConnectionViewModel : ObservableObject
 			ConnectionSpeed.CalculateUploadSpeed();
 		};
 
-		ConnectCommandAsync = new AsyncRelayCommand<object>(ConnectAsync);
+		ConnectCommandAsync = new AsyncRelayCommand(ConnectAsync);
 	}
 
 	#endregion
@@ -135,10 +134,8 @@ public class ConnectionViewModel : ObservableObject
 	/// <summary>
 	/// Connection relay command handler
 	/// </summary>
-	private async Task ConnectAsync(object parameter)
+	private async Task ConnectAsync()
 	{
-		var control = parameter as ConnectionView;
-
 		try
 		{
 			// prepare connection process

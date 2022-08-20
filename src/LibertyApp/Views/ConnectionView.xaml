@@ -22,8 +22,7 @@
                       IsChecked="{Binding IsConnected, TargetNullValue=False, Mode=OneWay}"
                       Style="{StaticResource ConnectButton}"
                       ToolTip="{Binding ConnectButtonText}"
-                      Command="{Binding ConnectCommandAsync}"
-                      CommandParameter="{Binding ElementName=ConnectionControl}"/>
+                      Command="{Binding ConnectCommandAsync}"/>
 
         <TextBlock Name="Status"
                    HorizontalAlignment="Center"

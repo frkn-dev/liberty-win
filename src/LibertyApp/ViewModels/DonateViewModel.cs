@@ -1,7 +1,7 @@
-﻿using LibertyApp.Language;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LibertyApp.Language;
 using LibertyApp.Properties;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -35,7 +35,7 @@ public class DonateViewModel : ObservableObject
 				"Ethereum" => Resource.ETH,
 				"NEAR" => Resource.NEAR,
 				"Credo" => Resource.Credo,
-				_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+				_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 			};
 
 			Clipboard.SetText(credentials);
@@ -64,7 +64,7 @@ public class DonateViewModel : ObservableObject
 					"Patreon" => Resource.Patreon,
 					"Boosty" => Resource.Boosty,
 					"Github" => Resource.Github,
-					_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+					_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 				},
 			};
 
