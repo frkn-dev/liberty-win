@@ -6,6 +6,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -38,6 +39,8 @@ public class ConnectionViewModel : ObservableObject
 		new(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connecting.jpg"))),
 		new(new BitmapImage(new Uri("pack://application:,,,/Resources/background-connected.jpg")))
 	};
+
+	private readonly LocationFinder _locationFinder;
 
 	#endregion
 
@@ -97,6 +100,14 @@ public class ConnectionViewModel : ObservableObject
 
 	private bool _isConnected = false;
 
+	public string Location
+	{
+		get => _location;
+		private set => SetProperty(ref _location, value);
+	}
+
+	private string _location;
+
 	#endregion
 
 	#region Constructors
@@ -106,6 +117,9 @@ public class ConnectionViewModel : ObservableObject
 		BackgroundImage = BackgroundImageStates[0];
 
 		ConnectionSpeed = new ConnectionSpeed();
+
+		// TODO HttpClient gets from DI
+		_locationFinder = new LocationFinder("http://ip-api.com/json", "http://checkip.dyndns.org", new HttpClient());
 
 		_dispatcherTimer = new DispatcherTimer
 		{
@@ -232,6 +246,9 @@ public class ConnectionViewModel : ObservableObject
 						ConnectionState = Strings.StatusConnected;
 						App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusConnected,
 							ToolTipIcon.Info);
+						
+						// Determine VPN location
+						Location = await _locationFinder.FindLocation();
 						break;
 
 					// any errors
@@ -243,6 +260,7 @@ public class ConnectionViewModel : ObservableObject
 						ConnectionState = Strings.StatusDisconnected;
 						break;
 				}
+				
 			}
 		}
 		catch (Exception e)
