@@ -12,8 +12,8 @@
 		<RepositoryUrl>https://github.com/nezavisimost/FuckRKN1</RepositoryUrl>
 		<PackageProjectUrl></PackageProjectUrl>
 		<Company>Nezavisimost</Company>
-		<Version>1.0.5</Version>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Version>1.0.6</Version>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Common" Version="8.0.0" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0" />
+		<PackageReference Include="CommunityToolkit.HighPerformance" Version="8.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 	</ItemGroup>
@@ -120,10 +123,15 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Strings.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Properties\Resource.Designer.cs">
+	  <Compile Update="Properties\Resources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resource.resx</DependentUpon>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Properties\Settings.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Settings.settings</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -135,13 +143,17 @@
 	  <EmbeddedResource Update="Language\Strings.ru-RU.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Properties\Resource.resx">
+	  <EmbeddedResource Update="Properties\Resources.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Properties\Settings.settings">
+	    <Generator>PublicSettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  </None>
 	  <None Update="Resources\icon.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

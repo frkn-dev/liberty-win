@@ -1,5 +1,4 @@
 ﻿using LibertyApp.Language;
-using LibertyApp.Properties;
 using LibertyApp.ViewModels;
 using LibertyApp.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +37,7 @@ public partial class App : Application
 
 	protected override void OnStartup(StartupEventArgs e)
 	{
-		WpfSingleInstance.Make(Resource.ConnectionName, false);
+		WpfSingleInstance.Make(LibertyApp.Properties.Resources.ConnectionName, false);
 
 		ConnectionSetup.ImportPfx();
 
@@ -48,36 +47,48 @@ public partial class App : Application
 			args.Cancel = true;
 			ShowHideWindow(sender, args);
 		};
+
 		MainWindow.Show();
+
+		if (LibertyApp.Properties.Settings.Default.HideInTray)
+		{
+			MainWindow.WindowState = WindowState.Minimized;
+			MainWindow.ShowInTaskbar = false;
+		}
 
 		NotifyIcon.DoubleClick += ShowHideWindow;
 
 		NotifyIcon.ContextMenuStrip = new ContextMenuStrip();
 		NotifyIcon.ContextMenuStrip.Items.Add(Strings.ShowHide, Image.FromFile("./Resources/icon.ico"), ShowHideWindow);
 		NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripSeparator());
-		NotifyIcon.ContextMenuStrip.Items.Add(Strings.Exit, null, (sender, args) =>
-		{
-			if ((MainWindow.DataContext as MainWindowViewModel).ConnectionViewModel.IsConnected)
-			{
-				if (System.Windows.MessageBox.Show(Strings.ExitApplicationMessage,
-						Strings.ExitApplicationCaption,
-						MessageBoxButton.YesNo,
-						MessageBoxImage.Question) == MessageBoxResult.Yes)
-				{
-					ConnectionSetup.Disconnect();
-					App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusDisconnected, ToolTipIcon.Info);
-					CloseApp();
-				}
-			}
-			else
-			{
-				CloseApp();
-			}
-		});
+		NotifyIcon.ContextMenuStrip.Items.Add(Strings.Exit, null, OnExitApplication);
 
 		NotifyIcon.Visible = true;
 
+		if (LibertyApp.Properties.Settings.Default.AutoConnect)
+			(MainWindow.DataContext as MainWindowViewModel).ConnectionViewModel.ConnectCommandAsync.Execute(null);
+
 		base.OnStartup(e);
+	}
+
+	internal void OnExitApplication(object sender, EventArgs e)
+	{
+		if ((MainWindow.DataContext as MainWindowViewModel).ConnectionViewModel.IsConnected)
+		{
+			if (System.Windows.MessageBox.Show(Strings.ExitApplicationMessage,
+					Strings.ExitApplicationCaption,
+					MessageBoxButton.YesNo,
+					MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				ConnectionSetup.Disconnect();
+				App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.StatusDisconnected, ToolTipIcon.Info);
+				CloseApp();
+			}
+		}
+		else
+		{
+			CloseApp();
+		}
 	}
 
 	/// <summary>
@@ -86,7 +97,7 @@ public partial class App : Application
 	/// <param name="sender"></param>
 	/// <param name="e"></param>
 	/// <exception cref="ArgumentOutOfRangeException"></exception>
-	private void ShowHideWindow(object sender, EventArgs e)
+	public void ShowHideWindow(object sender, EventArgs e)
 	{
 		switch (MainWindow?.WindowState)
 		{
@@ -98,7 +109,6 @@ public partial class App : Application
 			case WindowState.Normal:
 				MainWindow.WindowState = WindowState.Minimized;
 				MainWindow.ShowInTaskbar = false;
-				App.Current.NotifyIcon.ShowBalloonTip(100, Strings.AppName, Strings.AppInTrayNotify, ToolTipIcon.Info);
 				break;
 			case WindowState.Maximized:
 				MainWindow.WindowState = WindowState.Minimized;

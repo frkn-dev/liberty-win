@@ -30,11 +30,11 @@ public class DonateViewModel : ObservableObject
 
 			var credentials = parameter switch
 			{
-				"USDT" => Resource.USDT,
-				"BTC" => Resource.BTC,
-				"Ethereum" => Resource.ETH,
-				"NEAR" => Resource.NEAR,
-				"Credo" => Resource.Credo,
+				"USDT" => Resources.USDT,
+				"BTC" => Resources.BTC,
+				"Ethereum" => Resources.ETH,
+				"NEAR" => Resources.NEAR,
+				"Credo" => Resources.Credo,
 				_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 			};
 
@@ -61,9 +61,9 @@ public class DonateViewModel : ObservableObject
 				UseShellExecute = true,
 				FileName = parameter switch
 				{
-					"Patreon" => Resource.Patreon,
-					"Boosty" => Resource.Boosty,
-					"Github" => Resource.Github,
+					"Patreon" => Resources.Patreon,
+					"Boosty" => Resources.Boosty,
+					"Github" => Resources.Github,
 					_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 				},
 			};

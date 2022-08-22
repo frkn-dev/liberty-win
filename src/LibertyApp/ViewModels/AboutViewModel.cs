@@ -29,9 +29,9 @@ public class AboutViewModel : ObservableObject
 				UseShellExecute = true,
 				FileName = parameter switch
 				{
-					"Telegram" => Resource.Telegram,
-					"Twitter" => Resource.Twitter,
-					"Github" => Resource.Github,
+					"Telegram" => Resources.Telegram,
+					"Twitter" => Resources.Twitter,
+					"Github" => Resources.Github,
 					_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
 				},
 			};

@@ -7,7 +7,7 @@
         xmlns:language="clr-namespace:LibertyApp.Language"
         mc:Ignorable="d"
         Title="{x:Static language:Strings.AppName}"
-        Width="340" Height="640"
+        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         SnapsToDevicePixels="True">
@@ -18,29 +18,56 @@
 
     <DockPanel>
 
-        <Border DockPanel.Dock="Top" Background="#EFEFEF">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Menu DockPanel.Dock="Top">
 
-                <RadioButton IsChecked="True"
-                             Content="{x:Static language:Strings.ConnectionMenu}"
-                             Command="{Binding ShowConnectionViewCommand}"/>
+            <MenuItem Header="{x:Static language:Strings.ConnectionHeader}" Padding="4">
 
-                <RadioButton Grid.Column="1"
-                             Content="{x:Static language:Strings.AboutMenu}"
-                             Command="{Binding ShowAboutViewCommand}"/>
+                <MenuItem Header="{x:Static language:Strings.ConnectionMenu}"
+                          Command="{Binding ShowConnectionViewCommand}"/>
+                
+                <MenuItem Header="{x:Static language:Strings.AboutMenu}"
+                          Command="{Binding ShowAboutViewCommand}"/>
 
-                <RadioButton Grid.Column="2"
-                             Content="{x:Static language:Strings.DonateMenu}"
-                             Command="{Binding ShowDonateViewCommand}"/>
-            </Grid>
-        </Border>
+                <MenuItem Header="{x:Static language:Strings.DonateMenu}"
+                          Command="{Binding ShowDonateViewCommand}"/>
 
-        <ContentPresenter Content="{Binding CurrentView}"/>
+                <Separator />
+
+                <MenuItem Header="{x:Static language:Strings.ShowHide}" 
+                          Command="{Binding HideCommand}"/>
+                
+                <Separator />
+
+                <MenuItem Header="{x:Static language:Strings.Exit}" 
+                          Command="{Binding ShutdownCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="{x:Static language:Strings.Settings}" Padding="4">
+                <MenuItem Header="{x:Static language:Strings.LaunchWithWindows}" IsCheckable="True" 
+                          IsChecked="{Binding AutoRun}" 
+                          Command="{Binding SettingsAutoRunCommand}"/>
+
+                <MenuItem Header="{x:Static language:Strings.RunMinimizedIntoTray}" IsCheckable="True" 
+                          IsChecked="{Binding HideInTray}" 
+                          Command="{Binding SettingsHideInTrayCommand}"/>
+
+                <MenuItem Header="{x:Static language:Strings.ConnectAtLaunch}" IsCheckable="True" 
+                          IsChecked="{Binding AutoConnect}" 
+                          Command="{Binding SettingsAutoConnectCommand}"/>
+            </MenuItem>
+
+            <MenuItem Header="{x:Static language:Strings.Help}" Padding="4">
+                <MenuItem Header="{x:Static language:Strings.Instructions}" 
+                          Command="{Binding HelpCommand}"/>
+
+                <Separator />
+
+                <MenuItem Header="{x:Static language:Strings.Version}" 
+                          Command="{Binding AboutCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <ContentPresenter Content="{Binding CurrentView}" Width="340" Height="574"/>
 
     </DockPanel>
 </Window>

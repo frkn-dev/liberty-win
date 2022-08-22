@@ -209,7 +209,7 @@ public class ConnectionViewModel : ObservableObject
 				ConnectionState = Strings.StatusConnecting;
 
 				// arguments to establish a connection
-				process.StartInfo.ArgumentList.Add(Resource.ConnectionName);
+				process.StartInfo.ArgumentList.Add(Resources.ConnectionName);
 
 				process.Start();
 				await process.WaitForExitAsync();

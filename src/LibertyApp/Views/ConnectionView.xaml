@@ -6,7 +6,6 @@
              xmlns:viewmodels="clr-namespace:LibertyApp.ViewModels"
              xmlns:language="clr-namespace:LibertyApp.Language"
              mc:Ignorable="d"
-             d:DesignHeight="574" d:DesignWidth="340"
              d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
              Background="{Binding BackgroundImage}"
              Name="ConnectionControl">
