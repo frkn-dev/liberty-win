@@ -20,7 +20,7 @@
 
         <controls:OnlyBindingToggleButton x:Name="ConnectionButton"
                       Margin="0 110 0 0"
-                      IsChecked="{Binding IsConnected, TargetNullValue=False, Mode=OneWay, PresentationTraceSources.TraceLevel=High}"
+                      IsChecked="{Binding IsConnected, TargetNullValue=False, Mode=OneWay}"
                       Style="{StaticResource ConnectButton}"
                       ToolTip="{Binding ConnectButtonText}"
                       Command="{Binding ConnectCommandAsync}"
