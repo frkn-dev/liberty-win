@@ -1,7 +1,7 @@
-﻿using LibertyApp.Language;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LibertyApp.Language;
 using LibertyApp.Properties;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -29,9 +29,9 @@ public class AboutViewModel : ObservableObject
 				UseShellExecute = true,
 				FileName = parameter switch
 				{
-					"Telegram" => Resource.Telegram,
-					"Twitter" => Resource.Twitter,
-					"Github" => Resource.Github,
+					"Telegram" => Resources.Telegram,
+					"Twitter" => Resources.Twitter,
+					"Github" => Resources.Github,
 					_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
 				},
 			};

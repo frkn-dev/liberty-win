@@ -7,7 +7,6 @@
              xmlns:language="clr-namespace:LibertyApp.Language" 
              xmlns:controls="clr-namespace:LibertyApp.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="574" d:DesignWidth="340"
              d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
              Background="{Binding BackgroundImage}"
              Name="ConnectionControl">
@@ -23,8 +22,7 @@
                       IsChecked="{Binding IsConnected, TargetNullValue=False, Mode=OneWay}"
                       Style="{StaticResource ConnectButton}"
                       ToolTip="{Binding ConnectButtonText}"
-                      Command="{Binding ConnectCommandAsync}"
-                      CommandParameter="{Binding ElementName=ConnectionControl}"/>
+                      Command="{Binding ConnectCommandAsync}"/>
 
         <TextBlock Name="Status"
                    HorizontalAlignment="Center"
