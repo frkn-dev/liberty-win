@@ -112,14 +112,13 @@ public class ConnectionViewModel : ObservableObject
 
 	#region Constructors
 
-	public ConnectionViewModel()
+	public ConnectionViewModel(LocationFinder finder)
 	{
 		BackgroundImage = BackgroundImageStates[0];
 
 		ConnectionSpeed = new ConnectionSpeed();
-
-		// TODO HttpClient gets from DI
-		_locationFinder = new LocationFinder("http://ip-api.com/json", "http://checkip.dyndns.org", new HttpClient());
+		
+		_locationFinder = finder;
 
 		_dispatcherTimer = new DispatcherTimer
 		{
