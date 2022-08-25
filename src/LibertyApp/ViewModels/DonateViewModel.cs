@@ -1,7 +1,7 @@
-﻿using LibertyApp.Language;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LibertyApp.Language;
 using LibertyApp.Properties;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -30,12 +30,12 @@ public class DonateViewModel : ObservableObject
 
 			var credentials = parameter switch
 			{
-				"USDT" => Resource.USDT,
-				"BTC" => Resource.BTC,
-				"Ethereum" => Resource.ETH,
-				"NEAR" => Resource.NEAR,
-				"Credo" => Resource.Credo,
-				_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+				"USDT" => Resources.USDT,
+				"BTC" => Resources.BTC,
+				"Ethereum" => Resources.ETH,
+				"NEAR" => Resources.NEAR,
+				"Credo" => Resources.Credo,
+				_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 			};
 
 			Clipboard.SetText(credentials);
@@ -61,10 +61,10 @@ public class DonateViewModel : ObservableObject
 				UseShellExecute = true,
 				FileName = parameter switch
 				{
-					"Patreon" => Resource.Patreon,
-					"Boosty" => Resource.Boosty,
-					"Github" => Resource.Github,
-					_ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+					"Patreon" => Resources.Patreon,
+					"Boosty" => Resources.Boosty,
+					"Github" => Resources.Github,
+					_ => throw new ArgumentOutOfRangeException(nameof(sender)),
 				},
 			};
 

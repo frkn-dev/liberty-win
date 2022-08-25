@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodels="clr-namespace:LibertyApp.ViewModels"
-             xmlns:language="clr-namespace:LibertyApp.Language"
+             xmlns:language="clr-namespace:LibertyApp.Language" 
+             xmlns:controls="clr-namespace:LibertyApp.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="574" d:DesignWidth="340"
              d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
              Background="{Binding BackgroundImage}"
              Name="ConnectionControl">
@@ -17,13 +17,12 @@
 
     <Grid>
 
-        <ToggleButton Name="ConnectionButton"
+        <controls:OnlyBindingToggleButton x:Name="ConnectionButton"
                       Margin="0 110 0 0"
                       IsChecked="{Binding IsConnected, TargetNullValue=False, Mode=OneWay}"
                       Style="{StaticResource ConnectButton}"
                       ToolTip="{Binding ConnectButtonText}"
-                      Command="{Binding ConnectCommandAsync}"
-                      CommandParameter="{Binding ElementName=ConnectionControl}"/>
+                      Command="{Binding ConnectCommandAsync}"/>
 
         <TextBlock Name="Status"
                    HorizontalAlignment="Center"

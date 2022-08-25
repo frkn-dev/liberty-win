@@ -25,20 +25,20 @@ public static class ConnectionSetup
 			using var storePersonal = new X509Store(StoreName.My, StoreLocation.LocalMachine, OpenFlags.OpenExistingOnly | OpenFlags.ReadWrite);
 			using var storeTrustedRoot = new X509Store(StoreName.Root, StoreLocation.LocalMachine, OpenFlags.OpenExistingOnly | OpenFlags.ReadWrite);
 
-			if (!storePersonal.Certificates.Find(X509FindType.FindByThumbprint, Resource.ThumbPrintVpnClient, false).Any()
-				&& !storeTrustedRoot.Certificates.Find(X509FindType.FindByThumbprint, Resource.ThumbPrintIkeV2VpnCa, false).Any())
+			if (!storePersonal.Certificates.Find(X509FindType.FindByThumbprint, Resources.ThumbPrintVpnClient, false).Any()
+				&& !storeTrustedRoot.Certificates.Find(X509FindType.FindByThumbprint, Resources.ThumbPrintIkeV2VpnCa, false).Any())
 			{
 				if (MessageBox.Show(Strings.NeedForEncryptionKeysMessage,
 					Strings.NeedForEncryptionKeys,
 					MessageBoxButton.YesNo,
 					MessageBoxImage.Question) == MessageBoxResult.Yes)
 				{
-					if (!File.Exists(Resource.KeysFilePath))
+					if (!File.Exists(Resources.KeysFilePath))
 					{
 						storePersonal.Close();
 						storeTrustedRoot.Close();
 
-						throw new FileNotFoundException(Strings.EncryptionKeysFileNotFound, Resource.KeysFilePath);
+						throw new FileNotFoundException(Strings.EncryptionKeysFileNotFound, Resources.KeysFilePath);
 					}
 
 					using var process = new Process
@@ -52,7 +52,7 @@ public static class ConnectionSetup
 								"-p",
 								"",
 								"-importpfx",
-								Resource.KeysFilePath,
+								Resources.KeysFilePath,
 								"NoExport"
 							},
 							WorkingDirectory = Environment.CurrentDirectory,
@@ -116,8 +116,8 @@ public static class ConnectionSetup
 						"/c",
 						"powershell",
 						"Add-VpnConnection",
-						$"-ServerAddress {Resource.ServerName}",
-						$"-Name {Resource.ConnectionName}",
+						$"-ServerAddress {Resources.ServerName}",
+						$"-Name {Resources.ConnectionName}",
 						"-TunnelType IKEv2",
 						"-AuthenticationMethod MachineCertificate",
 						"-EncryptionLevel Required",
@@ -146,9 +146,9 @@ public static class ConnectionSetup
 					"/c",
 					"powershell",
 					"Set-VpnConnectionIPsecConfiguration",
-					$"-ConnectionName {Resource.ConnectionName}",
-					"-AuthenticationTransformConstants GCMAES12",
-					"-CipherTransformConstants GCMAES12",
+					$"-ConnectionName {Resources.ConnectionName}",
+					"-AuthenticationTransformConstants GCMAES128",
+					"-CipherTransformConstants GCMAES128",
 					"-EncryptionMethod AES256",
 					"-IntegrityCheckMethod SHA256",
 					"-PfsGroup None",

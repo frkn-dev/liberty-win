@@ -22,6 +22,9 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Source" Value="../Resources/button-active.png" TargetName="ButtonImage"/>
                         </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Source" Value="../Resources/button.png" TargetName="ButtonImage"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

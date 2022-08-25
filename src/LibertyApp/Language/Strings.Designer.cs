@@ -125,6 +125,15 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect at launch.
+        /// </summary>
+        public static string ConnectAtLaunch {
+            get {
+                return ResourceManager.GetString("ConnectAtLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connecting….
         /// </summary>
         public static string ConnectingText {
@@ -152,7 +161,7 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VPN.
+        ///   Looks up a localized string similar to Connection.
         /// </summary>
         public static string ConnectionMenu {
             get {
@@ -306,6 +315,78 @@ namespace LibertyApp.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instructions on GitHub.
+        /// </summary>
+        public static string Instructions {
+            get {
+                return ResourceManager.GetString("Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to VPN on the application launch?.
+        /// </summary>
+        public static string LaunchConnectExplicit {
+            get {
+                return ResourceManager.GetString("LaunchConnectExplicit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application will connect to the VPN on launch.
+        /// </summary>
+        public static string LaunchConnectMessage {
+            get {
+                return ResourceManager.GetString("LaunchConnectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application will minimize into tray on launch.
+        /// </summary>
+        public static string LaunchHiddenMessage {
+            get {
+                return ResourceManager.GetString("LaunchHiddenMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch with Windows.
+        /// </summary>
+        public static string LaunchWithWindows {
+            get {
+                return ResourceManager.GetString("LaunchWithWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run application on Windows startup?.
+        /// </summary>
+        public static string LaunchWithWindowsExplicit {
+            get {
+                return ResourceManager.GetString("LaunchWithWindowsExplicit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application will start with Windows.
+        /// </summary>
+        public static string LaunchWithWindowsMessage {
+            get {
+                return ResourceManager.GetString("LaunchWithWindowsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mbps.
         /// </summary>
         public static string Mbps {
@@ -342,6 +423,24 @@ namespace LibertyApp.Language {
         public static string OpenInBrowserTooltip {
             get {
                 return ResourceManager.GetString("OpenInBrowserTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run minimized into tray.
+        /// </summary>
+        public static string RunMinimizedIntoTray {
+            get {
+                return ResourceManager.GetString("RunMinimizedIntoTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -387,6 +486,15 @@ namespace LibertyApp.Language {
         public static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }
