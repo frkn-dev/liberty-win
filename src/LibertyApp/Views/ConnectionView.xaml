@@ -36,6 +36,17 @@
                    Margin="0 435 0 0"
                    Text="{Binding Timer, StringFormat=\{0:hh\\:mm\\:ss\}}" />
 
+        <Grid x:Name="LocationView"
+              VerticalAlignment="Bottom"
+              Margin="16 0 16 70"
+              Visibility="{Binding IsConnected, Converter={StaticResource BoolToVis}}">
+            <Border Background="White" CornerRadius="5" BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="COUNTRY" FontWeight="Light" Margin="16 0 0 0"/>
+                    <TextBlock Text="{Binding Location}" FontWeight="Bold" FontSize="17" Margin="16 0 0 0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
         <Grid Name="ConnectionSpeedView" 
               VerticalAlignment="Bottom" 
               Margin="16 0 16 16"

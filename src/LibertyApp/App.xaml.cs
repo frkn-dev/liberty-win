@@ -4,8 +4,10 @@ using LibertyApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Forms;
+using LibertyApp.Models;
 using Application = System.Windows.Application;
 
 namespace LibertyApp;
@@ -24,9 +26,11 @@ public partial class App : Application
 			.AddSingleton(typeof(MainWindowViewModel))
 			.AddSingleton(typeof(ConnectionViewModel))
 			.AddSingleton(typeof(AboutViewModel))
-			.AddSingleton(typeof(DonateViewModel));
+			.AddSingleton(typeof(DonateViewModel))
+			.AddSingleton(typeof(LocationFinder))
+			.AddHttpClient<LocationFinder>();
 
-		Services = services.BuildServiceProvider();
+		Services = services.Services.BuildServiceProvider();
 
 		NotifyIcon = new NotifyIcon
 		{
