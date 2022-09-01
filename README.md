@@ -2,6 +2,9 @@
   <img src="./media/logofckrkn.jpg" width="350" title="FuckRKN1">
 </p>
 
+
+[**English**](./README.md) | [**Русский**](./README-ru.md) 
+
 # FuckRKN1 VPN (Windows)
 VPN client for Windows from [**nezavisimost' Team**](https://github.com/nezavisimost).
 
